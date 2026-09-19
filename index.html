@@ -1,556 +1,966 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Aoxin Reivox</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: #050505;
-            color: #f5f5f5;
-            font-family: Arial, Helvetica, sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* =========================
-           TOP BAR
-        ========================= */
-
-        .topbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            padding: 0 35px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            z-index: 1000;
-            background: transparent;
-        }
-
-        .logo {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-
-        .menu-button {
-            border: 1px solid rgba(255,255,255,0.55);
-            background: rgba(0,0,0,0.35);
-            color: #fff;
-            padding: 11px 20px;
-            font-size: 12px;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .menu-button:hover {
-            background: #fff;
-            color: #000;
-        }
-
-        /* =========================
-           FULLSCREEN MENU
-        ========================= */
-
-        .menu {
-            position: fixed;
-            inset: 0;
-            background: rgba(5,5,5,0.98);
-            z-index: 2000;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            opacity: 0;
-            visibility: hidden;
-
-            transition: 0.35s ease;
-        }
-
-        .menu.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .menu-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 22px;
-        }
-
-        .menu a {
-            color: rgba(255,255,255,0.82);
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 500;
-            letter-spacing: 4px;
-            transition: 0.25s ease;
-        }
-
-        .menu a:hover {
-            color: #fff;
-            transform: translateX(6px);
-        }
-
-        .close-button {
-            position: absolute;
-            top: 28px;
-            right: 35px;
-
-            color: #fff;
-            background: none;
-            border: none;
-
-            font-size: 13px;
-            letter-spacing: 2px;
-            cursor: pointer;
-        }
-
-        /* =========================
-           GENERAL SECTIONS
-        ========================= */
-
-        section {
-            min-height: 100vh;
-            padding: 120px 8%;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .section-title {
-            font-size: 12px;
-            letter-spacing: 4px;
-            color: rgba(255,255,255,0.55);
-            margin-bottom: 35px;
-        }
-
-        /* =========================
-           HOME
-        ========================= */
-
-        #home {
-            min-height: 100vh;
-
-            align-items: center;
-            text-align: center;
-
-            background:
-                radial-gradient(
-                    circle at center,
-                    #151515 0%,
-                    #050505 55%
-                );
-        }
-
-        .hero-name {
-            font-size: clamp(45px, 9vw, 120px);
-            font-weight: 700;
-            letter-spacing: -3px;
-            line-height: 0.95;
-        }
-
-        .hero-role {
-            margin-top: 22px;
-            font-size: 14px;
-            letter-spacing: 6px;
-            color: rgba(255,255,255,0.75);
-        }
-
-        /* =========================
-           MUSIC
-        ========================= */
-
-        .music-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-
-            width: 100%;
-            max-width: 1000px;
-        }
-
-        .music-card {
-            min-height: 180px;
-
-            border: 1px solid rgba(255,255,255,0.12);
-
-            padding: 28px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            background: #0b0b0b;
+<title>Aoxin Reivox</title>
 
-            transition: 0.3s;
-        }
+<style>
 
-        .music-card:hover {
-            border-color: rgba(255,255,255,0.45);
-            transform: translateY(-4px);
-        }
+/* =========================
+   RESET
+========================= */
 
-        .music-card small {
-            color: rgba(255,255,255,0.45);
-            letter-spacing: 2px;
-            font-size: 10px;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .music-card h3 {
-            margin-top: 10px;
-            font-size: 20px;
-        }
-
-        /* =========================
-           GENRES
-        ========================= */
-
-        .genres {
-            margin-top: 70px;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        .genre-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
+body {
+    background: #050505;
+    color: #f5f5f5;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
 
-        .genre {
-            border: 1px solid rgba(255,255,255,0.2);
+a {
+    color: inherit;
+}
 
-            padding: 13px 18px;
 
-            color: rgba(255,255,255,0.8);
+/* =========================
+   TOP BAR
+========================= */
 
-            font-size: 11px;
-            letter-spacing: 2px;
-        }
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    padding: 0 40px;
 
-        /* =========================
-           VIDEOS
-        ========================= */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        .video-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
+    z-index: 1000;
 
-            width: 100%;
-            max-width: 1000px;
-        }
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.55),
+        transparent
+    );
+}
 
-        .video-card {
-            width: 100%;
-            height: 300px;
+.logo {
+    color: #fff;
+    text-decoration: none;
 
-            background: #101010;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
 
-            border: 1px solid rgba(255,255,255,0.12);
+.menu-button {
+    border: 1px solid rgba(255,255,255,0.55);
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(8px);
 
-            color: rgba(255,255,255,0.6);
+    color: #fff;
 
-            letter-spacing: 2px;
+    padding: 12px 22px;
 
-            transition: 0.3s;
-        }
+    font-size: 12px;
+    letter-spacing: 2px;
 
-        .video-card:hover {
-            border-color: rgba(255,255,255,0.4);
-        }
+    cursor: pointer;
 
-        /* =========================
-           TOUR
-        ========================= */
+    transition: 0.3s;
+}
 
-        .tour-list {
-            width: 100%;
-            max-width: 1000px;
+.menu-button:hover {
+    background: #fff;
+    color: #000;
+}
 
-            border-top: 1px solid rgba(255,255,255,0.15);
-        }
 
-        .tour-row {
-            display: grid;
-            grid-template-columns: 130px 1fr 120px;
+/* =========================
+   FULLSCREEN MENU
+========================= */
 
-            padding: 25px 0;
+.menu {
+    position: fixed;
+    inset: 0;
 
-            border-bottom: 1px solid rgba(255,255,255,0.12);
+    background: rgba(5,5,5,0.97);
 
-            color: rgba(255,255,255,0.8);
-        }
+    z-index: 2000;
 
-        .tour-row span:last-child {
-            text-align: right;
-            color: rgba(255,255,255,0.45);
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        /* =========================
-           SOCIALS
-        ========================= */
+    opacity: 0;
+    visibility: hidden;
 
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+    transition: 0.35s ease;
+}
 
-            width: 100%;
-            max-width: 1000px;
-        }
+.menu.active {
+    opacity: 1;
+    visibility: visible;
+}
 
-        .social-card {
-            min-height: 170px;
+.menu-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-            border: 1px solid rgba(255,255,255,0.12);
+    gap: 28px;
+}
 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+.menu a {
+    color: rgba(255,255,255,0.82);
 
-            color: #fff;
-            text-decoration: none;
+    text-decoration: none;
 
-            transition: 0.3s;
-        }
+    font-size: 24px;
+    font-weight: 500;
 
-        .social-card:hover {
-            border-color: rgba(255,255,255,0.5);
-            transform: translateY(-4px);
-        }
+    letter-spacing: 5px;
 
-        .social-icon {
-            width: 38px;
-            height: 38px;
-            margin-bottom: 18px;
-        }
+    transition: 0.25s ease;
+}
 
-        .social-card span {
-            font-size: 11px;
-            letter-spacing: 2px;
-        }
+.menu a:hover {
+    color: #fff;
+    transform: translateX(8px);
+}
 
-        /* =========================
-           ABOUT
-        ========================= */
+.close-button {
+    position: absolute;
+    top: 30px;
+    right: 40px;
 
-        .about-text {
-            max-width: 800px;
+    color: #fff;
 
-            font-size: clamp(24px, 4vw, 45px);
+    background: none;
+    border: none;
 
-            line-height: 1.25;
+    font-size: 13px;
+    letter-spacing: 2px;
 
-            letter-spacing: -1px;
-        }
+    cursor: pointer;
+}
 
-        /* =========================
-           FOOTER
-        ========================= */
 
-        footer {
-            padding: 35px 8%;
+/* =========================
+   GENERAL SECTIONS
+========================= */
 
-            border-top: 1px solid rgba(255,255,255,0.1);
+section {
+    min-height: 100vh;
 
-            display: flex;
-            justify-content: space-between;
+    padding: 140px 8%;
 
-            color: rgba(255,255,255,0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-            font-size: 10px;
-            letter-spacing: 2px;
-        }
+.section-title {
+    font-size: clamp(26px, 4vw, 52px);
 
-        /* =========================
-           TABLET
-        ========================= */
+    font-weight: 700;
 
-        @media (max-width: 900px) {
+    letter-spacing: 3px;
 
-            .social-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+    color: #fff;
 
-        }
+    margin-bottom: 55px;
+}
 
-        /* =========================
-           MOBILE
-        ========================= */
 
-        @media (max-width: 700px) {
+/* =========================
+   HOME / HERO
+========================= */
 
-            .topbar {
-                padding: 0 20px;
-            }
+#home {
+    position: relative;
 
-            .logo {
-                font-size: 15px;
-            }
+    min-height: 100vh;
 
-            section {
-                padding: 110px 25px;
-            }
+    align-items: center;
+    text-align: center;
 
-            .hero-name {
-                font-size: 48px;
-                letter-spacing: -2px;
-            }
+    overflow: hidden;
 
-            .hero-role {
-                font-size: 11px;
-                letter-spacing: 4px;
-            }
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.48),
+            rgba(0,0,0,0.72)
+        ),
+        url("");
 
-            .music-card {
-                min-height: 170px;
-            }
+    background-size: cover;
+    background-position: center;
+}
 
-            .video-card {
-                height: 220px;
-            }
+/*
+   HERO IMAGE SLOT
 
-            .social-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+   Later replace url("")
+   with your image filename.
 
-            .tour-row {
-                grid-template-columns: 80px 1fr;
-                gap: 10px;
-            }
+   Example:
 
-            .tour-row span:last-child {
-                text-align: left;
-                grid-column: 2;
-            }
+   url("hero.jpg")
+*/
 
-            footer {
-                flex-direction: column;
-                gap: 12px;
-            }
+#home::after {
+    content: "";
 
-            .menu a {
-                font-size: 16px;
-            }
+    position: absolute;
+    inset: 0;
 
-            .close-button {
-                right: 20px;
-            }
-        }
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.05),
+            transparent 50%
+        );
 
-        /* =========================
-           VERY SMALL PHONES
-        ========================= */
+    pointer-events: none;
+}
 
-        @media (max-width: 400px) {
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
 
-            .hero-name {
-                font-size: 40px;
-            }
+.hero-name {
+    font-size: clamp(52px, 10vw, 145px);
 
-            .social-grid {
-                grid-template-columns: 1fr;
-            }
+    font-weight: 700;
 
-            .social-card {
-                min-height: 130px;
-            }
-        }
+    letter-spacing: -5px;
 
-    </style>
+    line-height: 0.9;
+}
+
+.hero-role {
+    margin-top: 28px;
+
+    font-size: clamp(12px, 1.5vw, 17px);
+
+    letter-spacing: 7px;
+
+    color: rgba(255,255,255,0.8);
+}
+
+
+/* =========================
+   MUSIC
+========================= */
+
+#music {
+    align-items: flex-start;
+}
+
+.music-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 30px;
+
+    width: 100%;
+
+    max-width: 1200px;
+}
+
+.music-card {
+    border: 1px solid rgba(255,255,255,0.14);
+
+    padding: 20px;
+
+    background: #0b0b0b;
+
+    transition: 0.3s;
+}
+
+.music-card:hover {
+    border-color: rgba(255,255,255,0.5);
+
+    transform: translateY(-6px);
+}
+
+.music-cover {
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+
+    margin-bottom: 22px;
+}
+
+.music-info small {
+    color: rgba(255,255,255,0.5);
+
+    letter-spacing: 3px;
+
+    font-size: 11px;
+}
+
+.music-info h3 {
+    margin-top: 10px;
+
+    font-size: clamp(18px, 2vw, 24px);
+
+    line-height: 1.25;
+}
+
+.music-link {
+    display: block;
+
+    text-decoration: none;
+}
+
+
+/* =========================
+   VIDEOS
+========================= */
+
+#videos {
+    padding-left: 0;
+    padding-right: 0;
+
+    display: block;
+}
+
+.video-heading {
+    padding: 140px 8% 70px;
+}
+
+.video-sticky {
+    position: relative;
+
+    height: 180vh;
+}
+
+.video-photo {
+    position: sticky;
+
+    top: 0;
+
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: #101010;
+}
+
+.video-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    opacity: 0.7;
+}
+
+.video-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.15),
+            rgba(0,0,0,0.75)
+        );
+
+    display: flex;
+
+    align-items: flex-end;
+
+    padding: 8%;
+}
+
+.video-overlay-content {
+    max-width: 800px;
+}
+
+.video-overlay small {
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    color: rgba(255,255,255,0.7);
+}
+
+.video-overlay h2 {
+    margin-top: 15px;
+
+    font-size: clamp(36px, 7vw, 90px);
+
+    line-height: 0.95;
+}
+
+
+/* =========================
+   PHOTO SLIDER
+========================= */
+
+.photo-slider-section {
+    padding: 120px 8%;
+
+    min-height: auto;
+}
+
+.photo-slider {
+    display: flex;
+
+    gap: 20px;
+
+    overflow-x: auto;
+
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: none;
+
+    padding-bottom: 15px;
+}
+
+.photo-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.photo-slide {
+    flex: 0 0 min(70vw, 500px);
+
+    height: min(60vw, 500px);
+
+    object-fit: cover;
+
+    scroll-snap-align: center;
+
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+
+/* =========================
+   TOUR
+========================= */
+
+#tour {
+    align-items: flex-start;
+}
+
+.tour-list {
+    width: 100%;
+
+    max-width: 1200px;
+
+    border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.tour-row {
+    display: grid;
+
+    grid-template-columns:
+        150px 1fr 150px;
+
+    gap: 20px;
+
+    padding: 28px 0;
+
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+
+    color: rgba(255,255,255,0.85);
+
+    font-size: 16px;
+}
+
+.tour-row span:last-child {
+    text-align: right;
+
+    color: rgba(255,255,255,0.5);
+}
+
+
+/* =========================
+   SOCIALS
+========================= */
+
+#socials {
+    align-items: flex-start;
+}
+
+.social-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    width: 100%;
+
+    max-width: 1200px;
+}
+
+.social-card {
+    min-height: 190px;
+
+    border: 1px solid rgba(255,255,255,0.14);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.social-card:hover {
+    border-color: rgba(255,255,255,0.55);
+
+    transform: translateY(-6px);
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+
+    margin-bottom: 20px;
+}
+
+.social-card span {
+    font-size: 13px;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================
+   GENRES
+========================= */
+
+#genres {
+    min-height: auto;
+
+    align-items: flex-start;
+}
+
+.genre-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    max-width: 1100px;
+}
+
+.genre {
+    border: 1px solid rgba(255,255,255,0.25);
+
+    padding: 16px 22px;
+
+    color: rgba(255,255,255,0.9);
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    transition: 0.3s;
+}
+
+.genre:hover {
+    background: #fff;
+
+    color: #000;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+#about {
+    align-items: flex-start;
+}
+
+.about-text {
+    max-width: 950px;
+
+    font-size: clamp(28px, 4.5vw, 62px);
+
+    line-height: 1.15;
+
+    letter-spacing: -2px;
+}
+
+
+/* =========================
+   ENQUIRY
+========================= */
+
+#enquiry {
+    min-height: 70vh;
+
+    align-items: flex-start;
+}
+
+.enquiry-email {
+    font-size: clamp(20px, 3vw, 36px);
+
+    color: rgba(255,255,255,0.75);
+
+    margin-bottom: 35px;
+}
+
+.enquiry-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px 32px;
+
+    border: 1px solid rgba(255,255,255,0.5);
+
+    background: transparent;
+
+    color: #fff;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.enquiry-button:hover {
+    background: #fff;
+
+    color: #000;
+}
+
+.contact-options {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.contact-options a {
+    padding: 14px 24px;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 40px 8%;
+
+    border-top: 1px solid rgba(255,255,255,0.1);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: rgba(255,255,255,0.4);
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    .social-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .tour-row {
+        grid-template-columns:
+            110px 1fr 100px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .topbar {
+        height: 70px;
+
+        padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 15px;
+    }
+
+    section {
+        padding: 110px 25px;
+    }
+
+    .section-title {
+        font-size: 30px;
+
+        letter-spacing: 2px;
+
+        margin-bottom: 40px;
+    }
+
+    .hero-name {
+        font-size: 48px;
+
+        letter-spacing: -3px;
+    }
+
+    .hero-role {
+        font-size: 10px;
+
+        letter-spacing: 4px;
+    }
+
+    .music-grid {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .music-card {
+        padding: 16px;
+    }
+
+    .music-info h3 {
+        font-size: 20px;
+    }
+
+    .video-heading {
+        padding: 110px 25px 50px;
+    }
+
+    .video-sticky {
+        height: 150vh;
+    }
+
+    .video-overlay {
+        padding: 25px;
+    }
+
+    .video-overlay h2 {
+        font-size: 45px;
+    }
+
+    .photo-slider-section {
+        padding: 90px 25px;
+    }
+
+    .photo-slide {
+        flex-basis: 78vw;
+
+        height: 78vw;
+    }
+
+    .social-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .social-card {
+        min-height: 150px;
+    }
+
+    .social-card span {
+        font-size: 10px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .tour-row {
+        grid-template-columns:
+            80px 1fr;
+
+        gap: 8px;
+
+        font-size: 14px;
+    }
+
+    .tour-row span:last-child {
+        grid-column: 2;
+
+        text-align: left;
+    }
+
+    .about-text {
+        font-size: 31px;
+    }
+
+    .contact-options {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .contact-options a {
+        text-align: center;
+    }
+
+    footer {
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .menu a {
+        font-size: 19px;
+    }
+
+    .close-button {
+        right: 20px;
+    }
+
+}
+
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media (max-width: 400px) {
+
+    .hero-name {
+        font-size: 40px;
+    }
+
+    .social-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-card {
+        min-height: 130px;
+    }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <!-- =========================
-         TOP BAR
-    ========================= -->
 
-    <header class="topbar">
+<!-- =========================
+     TOP BAR
+========================= -->
 
-        <a href="#home" class="logo">
-            AOXIN REIVOX
-        </a>
+<header class="topbar">
 
-        <button class="menu-button" onclick="openMenu()">
-            MENU
-        </button>
+    <a href="#home" class="logo">
+        AOXIN REIVOX
+    </a>
 
-    </header>
+    <button class="menu-button" onclick="openMenu()">
+        MENU
+    </button>
 
-
-    <!-- =========================
-         FULLSCREEN MENU
-    ========================= -->
-
-    <div class="menu" id="menu">
-
-        <button class="close-button" onclick="closeMenu()">
-            CLOSE
-        </button>
-
-        <nav class="menu-content">
-
-            <a href="#home" onclick="closeMenu()">
-                HOME
-            </a>
-
-            <a href="#music" onclick="closeMenu()">
-                MUSIC
-            </a>
-
-            <a href="#videos" onclick="closeMenu()">
-                VIDEOS
-            </a>
-
-            <a href="#tour" onclick="closeMenu()">
-                TOUR
-            </a>
-
-            <a href="#socials" onclick="closeMenu()">
-                SOCIALS
-            </a>
-
-            <a href="#about" onclick="closeMenu()">
-                ABOUT
-            </a>
-
-        </nav>
-
-    </div>
+</header>
 
 
-    <!-- =========================
-         HOME
-    ========================= -->
+<!-- =========================
+     MENU
+========================= -->
 
-    <section id="home">
+<div class="menu" id="menu">
+
+    <button class="close-button" onclick="closeMenu()">
+        CLOSE
+    </button>
+
+    <nav class="menu-content">
+
+        <a href="#home" onclick="closeMenu()">HOME</a>
+
+        <a href="#music" onclick="closeMenu()">MUSIC</a>
+
+        <a href="#videos" onclick="closeMenu()">VIDEOS</a>
+
+        <a href="#tour" onclick="closeMenu()">TOUR</a>
+
+        <a href="#socials" onclick="closeMenu()">SOCIALS</a>
+
+        <a href="#genres" onclick="closeMenu()">GENRE</a>
+
+        <a href="#about" onclick="closeMenu()">ABOUT</a>
+
+        <a href="#enquiry" onclick="closeMenu()">ENQUIRY</a>
+
+    </nav>
+
+</div>
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section id="home">
+
+    <div class="hero-content">
 
         <div class="hero-name">
             AOXIN REIVOX
@@ -560,38 +970,64 @@
             DJ / PRODUCER
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- =========================
-         MUSIC
-    ========================= -->
+<!-- =========================
+     MUSIC
+========================= -->
 
-    <section id="music">
+<section id="music">
 
-        <div class="section-title">
-            MUSIC
-        </div>
+    <div class="section-title">
+        MUSIC
+    </div>
 
-        <div class="music-grid">
 
-<div class="music-card">
+    <div class="music-grid">
 
-    <img src="file_00000000795082119825627ce981ebd5.png"
-         alt="Thalakkanam — Baile Edit"
-         style="width:100%; border-radius:8px;">
 
-    <small>
-        EDIT
-    </small>
+        <!-- THALAKKANAM -->
 
-    <h3>
-        Thalakkanam — Baile Edit
-    </h3>
-
-</div>
+        <a
+            class="music-link"
+            href="https://on.soundcloud.com/poKeFsKSJLRUfMmdi9"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
 
             <div class="music-card">
+
+                <img
+                    class="music-cover"
+                    src="file_00000000795082119825627ce981ebd5.png"
+                    alt="Thalakkanam — Baile Edit"
+                >
+
+                <div class="music-info">
+
+                    <small>
+                        EDIT
+                    </small>
+
+                    <h3>
+                        Thalakkanam — Baile Edit
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- COMING SOON -->
+
+        <div class="music-card">
+
+            <div class="music-info">
 
                 <small>
                     NEW MUSIC
@@ -603,8 +1039,14 @@
 
             </div>
 
+        </div>
 
-            <div class="music-card">
+
+        <!-- LATEST EDITS -->
+
+        <div class="music-card">
+
+            <div class="music-info">
 
                 <small>
                     LATEST
@@ -618,350 +1060,451 @@
 
         </div>
 
+    </div>
 
-        <!-- GENRES -->
-
-        <div class="genres">
-
-            <div class="section-title">
-                GENRES
-            </div>
-
-            <div class="genre-list">
-
-                <div class="genre">
-                    ELECTRONIC
-                </div>
-
-                <div class="genre">
-                    HOUSE
-                </div>
-
-                <div class="genre">
-                    BAILE
-                </div>
-
-                <div class="genre">
-                    EDM
-                </div>
-
-                <div class="genre">
-                    FUTURE BASS
-                </div>
-
-                <div class="genre">
-                    BIG ROOM
-                </div>
-
-                <div class="genre">
-                    PROGRESSIVE HOUSE
-                </div>
-
-                <div class="genre">
-                    STUTTER HOUSE
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
+</section>
 
 
-    <!-- =========================
-         VIDEOS
-    ========================= -->
+<!-- =========================
+     VIDEOS / STICKY VISUAL
+========================= -->
 
-    <section id="videos">
+<section id="videos">
+
+    <div class="video-heading">
 
         <div class="section-title">
             VIDEOS
         </div>
 
-        <div class="video-grid">
+    </div>
 
-            <div class="video-card">
-                LIVE SESSION
-            </div>
 
-            <div class="video-card">
-                LATEST SET
-            </div>
+    <div class="video-sticky">
 
-            <div class="video-card">
-                BEHIND THE SETUP
+        <div class="video-photo">
+
+            <!--
+                GIG PHOTO SLOT
+
+                Later replace:
+                src=""
+                with your image filename.
+
+                Example:
+                src="gig1.jpg"
+            -->
+
+            <img
+                src=""
+                alt="Aoxin Reivox live"
+            >
+
+            <div class="video-overlay">
+
+                <div class="video-overlay-content">
+
+                    <small>
+                        LIVE / GIGS
+                    </small>
+
+                    <h2>
+                        AOXIN REIVOX
+                    </h2>
+
+                </div>
+
             </div>
 
         </div>
 
-    </section>
+    </div>
 
 
-    <!-- =========================
-         TOUR
-    ========================= -->
+    <!-- PHOTO SLIDER -->
 
-    <section id="tour">
+    <div class="photo-slider-section">
 
         <div class="section-title">
-            TOUR
+            LIVE MOMENTS
         </div>
 
-        <div class="tour-list">
+        <div class="photo-slider">
 
-            <div class="tour-row">
+            <!-- Replace these empty src values with your photos -->
 
-                <span>
-                    LIVE
-                </span>
-
-                <span>
-                    Event / Kerala
-                </span>
-
-                <span>
-                    2026
-                </span>
-
-            </div>
-
-
-            <div class="tour-row">
-
-                <span>
-                    DATE
-                </span>
-
-                <span>
-                    More dates coming soon
-                </span>
-
-                <span>
-                    INDIA
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         SOCIALS
-    ========================= -->
-
-    <section id="socials">
-
-        <div class="section-title">
-            SOCIALS
-        </div>
-
-        <div class="social-grid">
-
-
-            <!-- SOUNDCLOUD -->
-
-            <a
-                class="social-card"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
+            <img
+                class="photo-slide"
+                src=""
+                alt="Aoxin Reivox gig"
             >
 
-                <svg
-                    class="social-icon"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                >
-
-                    <path d="M1 14.5c0-.7.4-1.3 1-1.6v-.3c0-3.5 2.8-6.3 6.3-6.3 2.7 0 5 1.7 5.9 4.1.3-.1.7-.1 1-.1 2.4 0 4.3 1.9 4.3 4.3 0 2.3-1.8 4.2-4.1 4.3H3.1c-1.2 0-2.1-1-2.1-2.2v-2.2z"/>
-
-                </svg>
-
-                <span>
-                    SOUNDCLOUD
-                </span>
-
-            </a>
-
-
-            <!-- SPOTIFY -->
-
-            <a
-                class="social-card"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
+            <img
+                class="photo-slide"
+                src=""
+                alt="Aoxin Reivox DJ setup"
             >
 
-                <svg
-                    class="social-icon"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                >
-
-                    <circle
-                        cx="12"
-                        cy="12"
-                        r="10"
-                    />
-
-                    <path
-                        d="M7 9.2c3.4-1 6.9-.7 10 .8M7.5 12c2.8-.7 5.8-.5 8.3.7M8.3 14.8c2.1-.4 4.2-.2 6 .5"
-                        fill="none"
-                        stroke="#050505"
-                        stroke-width="1.4"
-                        stroke-linecap="round"
-                    />
-
-                </svg>
-
-                <span>
-                    SPOTIFY
-                </span>
-
-            </a>
-
-
-            <!-- BANDCAMP -->
-
-            <a
-                class="social-card"
-                href="https://aoxinreivox.bandcamp.com"
-                target="_blank"
-                rel="noopener noreferrer"
+            <img
+                class="photo-slide"
+                src=""
+                alt="Aoxin Reivox live"
             >
-
-                <svg
-                    class="social-icon"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                >
-
-                    <path d="M3 17h7l6-10h-7L3 17z"/>
-
-                    <path d="M13 7h5l3 10h-5L13 7z"/>
-
-                </svg>
-
-                <span>
-                    BANDCAMP
-                </span>
-
-            </a>
-
-
-            <!-- YOUTUBE -->
-
-            <a
-                class="social-card"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-
-                <svg
-                    class="social-icon"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                >
-
-                    <rect
-                        x="3"
-                        y="6"
-                        width="18"
-                        height="12"
-                        rx="3"
-                    />
-
-                    <polygon
-                        points="10,9 16,12 10,15"
-                        fill="#050505"
-                    />
-
-                </svg>
-
-                <span>
-                    YOUTUBE
-                </span>
-
-            </a>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- =========================
-         ABOUT
-    ========================= -->
+<!-- =========================
+     TOUR
+========================= -->
 
-    <section id="about">
+<section id="tour">
 
-        <div class="section-title">
-            ABOUT
+    <div class="section-title">
+        TOUR
+    </div>
+
+    <div class="tour-list">
+
+        <div class="tour-row">
+
+            <span>
+                LIVE
+            </span>
+
+            <span>
+                Event / Kerala
+            </span>
+
+            <span>
+                2026
+            </span>
+
         </div>
 
-        <div class="about-text">
+        <div class="tour-row">
 
-            Aoxin Reivox is a DJ and music producer
-            focused on electronic music, house,
-            baile and energetic club sounds.
+            <span>
+                DATE
+            </span>
+
+            <span>
+                More dates coming soon
+            </span>
+
+            <span>
+                INDIA
+            </span>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- =========================
-         FOOTER
-    ========================= -->
+<!-- =========================
+     SOCIALS
+========================= -->
 
-    <footer>
+<section id="socials">
 
-        <span>
-            AOXIN REIVOX
-        </span>
-
-        <span>
-            © 2026 DJ / PRODUCER
-        </span>
-
-    </footer>
+    <div class="section-title">
+        SOCIALS
+    </div>
 
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
+    <div class="social-grid">
 
-    <script>
 
-        function openMenu() {
-            document
-                .getElementById("menu")
-                .classList
-                .add("active");
+        <!-- SOUNDCLOUD -->
+
+        <a
+            class="social-card"
+            href="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <svg
+                class="social-icon"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+            >
+
+                <path d="M1 14.5c0-.7.4-1.3 1-1.6v-.3c0-3.5 2.8-6.3 6.3-6.3 2.7 0 5 1.7 5.9 4.1.3-.1.7-.1 1-.1 2.4 0 4.3 1.9 4.3 4.3 0 2.3-1.8 4.2-4.1 4.3H3.1c-1.2 0-2.1-1-2.1-2.2v-2.2z"/>
+
+            </svg>
+
+            <span>
+                SOUNDCLOUD
+            </span>
+
+        </a>
+
+
+        <!-- SPOTIFY -->
+
+        <a
+            class="social-card"
+            href="#"
+        >
+
+            <svg
+                class="social-icon"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+            >
+
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                />
+
+                <path
+                    d="M7 9.2c3.4-1 6.9-.7 10 .8M7.5 12c2.8-.7 5.8-.5 8.3.7M8.3 14.8c2.1-.4 4.2-.2 6 .5"
+                    fill="none"
+                    stroke="#050505"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                />
+
+            </svg>
+
+            <span>
+                SPOTIFY
+            </span>
+
+        </a>
+
+
+        <!-- BANDCAMP -->
+
+        <a
+            class="social-card"
+            href="https://aoxinreivox.bandcamp.com"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <svg
+                class="social-icon"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+            >
+
+                <path d="M3 17h7l6-10h-7L3 17z"/>
+
+                <path d="M13 7h5l3 10h-5L13 7z"/>
+
+            </svg>
+
+            <span>
+                BANDCAMP
+            </span>
+
+        </a>
+
+
+        <!-- YOUTUBE -->
+
+        <a
+            class="social-card"
+            href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <svg
+                class="social-icon"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+            >
+
+                <rect
+                    x="3"
+                    y="6"
+                    width="18"
+                    height="12"
+                    rx="3"
+                />
+
+                <polygon
+                    points="10,9 16,12 10,15"
+                    fill="#050505"
+                />
+
+            </svg>
+
+            <span>
+                YOUTUBE
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     GENRES
+========================= -->
+
+<section id="genres">
+
+    <div class="section-title">
+        GENRES
+    </div>
+
+    <div class="genre-list">
+
+        <div class="genre">ELECTRONIC</div>
+
+        <div class="genre">HOUSE</div>
+
+        <div class="genre">BAILE</div>
+
+        <div class="genre">EDM</div>
+
+        <div class="genre">FUTURE BASS</div>
+
+        <div class="genre">BIG ROOM</div>
+
+        <div class="genre">PROGRESSIVE HOUSE</div>
+
+        <div class="genre">STUTTER HOUSE</div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about">
+
+    <div class="section-title">
+        ABOUT
+    </div>
+
+    <div class="about-text">
+
+        ABOUT TEXT COMING SOON.
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ENQUIRY
+========================= -->
+
+<section id="enquiry">
+
+    <div class="section-title">
+        ENQUIRY
+    </div>
+
+    <!-- Replace this later with your real email -->
+
+    <div class="enquiry-email">
+        YOUR EMAIL HERE
+    </div>
+
+    <a
+        class="enquiry-button"
+        href="mailto:"
+    >
+        ENQUIRE
+    </a>
+
+    <div class="contact-options">
+
+        <!-- Add real email later -->
+
+        <a href="mailto:">
+            EMAIL
+        </a>
+
+        <!-- Add phone number later -->
+
+        <a href="tel:">
+            CALL
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <span>
+        AOXIN REIVOX
+    </span>
+
+    <span>
+        © 2026 DJ / PRODUCER
+    </span>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+function openMenu() {
+
+    document
+        .getElementById("menu")
+        .classList
+        .add("active");
+
+}
+
+
+function closeMenu() {
+
+    document
+        .getElementById("menu")
+        .classList
+        .remove("active");
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeMenu();
+
         }
 
+    }
+);
 
-        function closeMenu() {
-            document
-                .getElementById("menu")
-                .classList
-                .remove("active");
-        }
+</script>
 
-
-        document.addEventListener("keydown", function(event) {
-
-            if (event.key === "Escape") {
-                closeMenu();
-            }
-
-        });
-
-    </script>
 
 </body>
 </html>
+```
