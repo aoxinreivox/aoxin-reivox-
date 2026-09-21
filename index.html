@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JAUZ - Official Website Replica</title>
+    <title>AOXIN REIVOX - Official Website</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for Icons -->
@@ -19,7 +19,6 @@
                 extend: {
                     colors: {
                         darkBg: '#080808',
-                        twitchPurple: '#6441a5',
                         brandAccent: '#ffffff',
                     },
                     fontFamily: {
@@ -119,9 +118,8 @@
         </button>
         <a href="#music" class="menu-link text-3xl font-extrabold tracking-widest hover:text-gray-400">MUSIC</a>
         <a href="#coverflow" class="menu-link text-3xl font-extrabold tracking-widest hover:text-gray-400">PLAYER</a>
+        <a href="#about" class="menu-link text-3xl font-extrabold tracking-widest hover:text-gray-400">ABOUT</a>
         <a href="#tour" class="menu-link text-3xl font-extrabold tracking-widest hover:text-gray-400">TOUR</a>
-        <a href="#twitch" class="menu-link text-3xl font-extrabold tracking-widest hover:text-gray-400">TWITCH</a>
-        <a href="#apparel" class="menu-link text-3xl font-extrabold tracking-widest hover:text-gray-400">APPAREL</a>
         <a href="#connect" class="menu-link text-3xl font-extrabold tracking-widest hover:text-gray-400">CONNECT</a>
     </div>
 
@@ -129,7 +127,7 @@
     <input type="file" id="globalFileInput" accept="image/*" class="hidden">
 
     <!-- Hero Section -->
-    <section class="relative h-screen w-full flex flex-col justify-between p-6 md:p-10 upload-zone group" id="heroBg" data-bg-id="hero">
+    <section class="relative h-screen w-full flex flex-col justify-between p-6 md:p-10 upload-zone group" id="heroBg" data-bg-id="hero" style="background-image: url('https://raw.githubusercontent.com/aoxinreivox/aoxinreivox.github.io/main/croud1.jpg'); background-size: cover; background-position: center;">
         <div class="upload-overlay absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none">
             <i class="fa-solid fa-cloud-arrow-up text-4xl mb-2 text-white"></i>
             <span class="text-sm font-semibold tracking-wider uppercase">Click to change Hero Background</span>
@@ -141,9 +139,9 @@
                 <i class="fa-solid fa-bars"></i>
             </button>
             
-            <!-- Logo SVG Replica -->
-            <div class="w-16 h-16 flex items-center justify-center font-display text-4xl tracking-tighter uppercase font-black italic border-2 border-white p-2">
-                JAUZ
+            <!-- Logo AOXIN REIVOX -->
+            <div class="px-4 py-2 flex items-center justify-center font-display text-2xl md:text-3xl tracking-tighter uppercase font-black italic border-2 border-white">
+                AOXIN REIVOX
             </div>
             
             <div class="w-8"></div> <!-- Spacer for symmetry -->
@@ -151,11 +149,11 @@
 
         <!-- Hero Bottom Title Overlay -->
         <div class="relative z-30 max-w-7xl mx-auto w-full text-center pb-12">
-            <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-4 opacity-90 drop-shadow-md">
-                OFFICIAL ARCHIVE
+            <h1 class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-2 opacity-95 drop-shadow-md">
+                AOXIN REIVOX
             </h1>
-            <p class="text-sm md:text-base tracking-widest text-gray-300 uppercase">
-                Scroll Down To Explore
+            <p class="text-xs md:text-sm tracking-widest text-gray-300 uppercase font-semibold">
+                DJ &amp; Producer • Kerala, India
             </p>
             <div class="mt-6 animate-bounce">
                 <i class="fa-solid fa-chevron-down text-xl"></i>
@@ -166,85 +164,78 @@
     <!-- Music Section -->
     <section id="music" class="py-20 px-4 max-w-4xl mx-auto text-center space-y-16 reveal-on-scroll">
         <h2 class="text-4xl md:text-5xl font-black tracking-tight uppercase border-b-2 border-white/20 pb-4 inline-block">
-            MUSIC
+            LATEST RELEASES
         </h2>
 
-        <!-- Track 1: Don't Lose Your Head -->
+        <!-- Featured Single: THALAKKANAM BAILE EDIT -->
         <div class="space-y-6">
-            <div class="upload-zone aspect-square max-w-md mx-auto rounded-none overflow-hidden group shadow-2xl" id="track1Card" data-bg-id="track1">
+            <div class="upload-zone aspect-square max-w-md mx-auto rounded-none overflow-hidden group shadow-2xl" id="track1Card" data-bg-id="track1" style="background-image: url('https://raw.githubusercontent.com/aoxinreivox/aoxinreivox.github.io/main/file_00000000795082119825627ce981ebd5.png'); background-size: cover; background-position: center;">
                 <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center">
                     <i class="fa-solid fa-camera text-3xl mb-2"></i>
                     <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Cover</span>
                 </div>
-                <!-- Default Placeholder Visual -->
-                <div class="w-full h-full flex flex-col items-center justify-center bg-zinc-900 p-8 text-center placeholder-content">
-                    <i class="fa-solid fa-music text-5xl text-zinc-700 mb-4"></i>
-                    <p class="text-zinc-500 font-bold uppercase text-sm">Artwork Placeholder 1</p>
-                </div>
             </div>
-            <h3 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide">DON'T LOSE YOUR HEAD</h3>
-            <button class="px-8 py-3 border-2 border-white rounded-full font-bold tracking-widest hover:bg-white hover:text-black transition-all text-sm uppercase">
-                &#9654; LISTEN
-            </button>
+            <div>
+                <span class="text-xs font-bold tracking-widest text-red-500 uppercase">Featured Track</span>
+                <h3 class="text-2xl md:text-4xl font-extrabold uppercase tracking-wide mt-1">THALAKKANAM BAILE EDIT</h3>
+            </div>
+            <a href="https://on.soundcloud.com/poKeFsKSJLRUfMmdi9" target="_blank" class="inline-block px-8 py-3 border-2 border-white rounded-full font-bold tracking-widest hover:bg-white hover:text-black transition-all text-sm uppercase">
+                <i class="fa-brands fa-soundcloud mr-2"></i> LISTEN ON SOUNDCLOUD
+            </a>
         </div>
 
-        <!-- Track 2: Chains -->
-        <div class="space-y-6 pt-10">
-            <div class="upload-zone aspect-square max-w-md mx-auto rounded-none overflow-hidden group shadow-2xl" id="track2Card" data-bg-id="track2">
-                <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center">
-                    <i class="fa-solid fa-camera text-3xl mb-2"></i>
-                    <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Cover</span>
+        <!-- Additional Track Placeholders -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-10 border-t border-zinc-800">
+            <div class="space-y-4">
+                <div class="upload-zone aspect-square max-w-xs mx-auto rounded-none overflow-hidden group shadow-xl" id="track2Card" data-bg-id="track2">
+                    <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-camera text-2xl mb-2"></i>
+                        <span class="text-xs uppercase font-bold tracking-wider">Upload Cover</span>
+                    </div>
+                    <div class="w-full h-full flex flex-col items-center justify-center bg-zinc-900 p-6 text-center placeholder-content">
+                        <i class="fa-solid fa-compact-disc text-4xl text-zinc-700 mb-2"></i>
+                        <p class="text-zinc-500 font-bold uppercase text-xs">Kerala Baile Flip</p>
+                    </div>
                 </div>
-                <div class="w-full h-full flex flex-col items-center justify-center bg-zinc-900 p-8 text-center placeholder-content">
-                    <i class="fa-solid fa-compact-disc text-5xl text-zinc-700 mb-4"></i>
-                    <p class="text-zinc-500 font-bold uppercase text-sm">Artwork Placeholder 2</p>
-                </div>
+                <h4 class="text-lg font-extrabold uppercase">ORIGINAL MIX (UNRELEASED)</h4>
             </div>
-            <h3 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide">CHAINS</h3>
-            <button class="px-8 py-3 border-2 border-white rounded-full font-bold tracking-widest hover:bg-white hover:text-black transition-all text-sm uppercase">
-                &#9654; LISTEN
-            </button>
-        </div>
 
-        <!-- Track 3: Higher For Your Love -->
-        <div class="space-y-6 pt-10">
-            <div class="upload-zone aspect-square max-w-md mx-auto rounded-none overflow-hidden group shadow-2xl" id="track3Card" data-bg-id="track3">
-                <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center">
-                    <i class="fa-solid fa-camera text-3xl mb-2"></i>
-                    <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Cover</span>
+            <div class="space-y-4">
+                <div class="upload-zone aspect-square max-w-xs mx-auto rounded-none overflow-hidden group shadow-xl" id="track3Card" data-bg-id="track3">
+                    <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-camera text-2xl mb-2"></i>
+                        <span class="text-xs uppercase font-bold tracking-wider">Upload Cover</span>
+                    </div>
+                    <div class="w-full h-full flex flex-col items-center justify-center bg-zinc-900 p-6 text-center placeholder-content">
+                        <i class="fa-solid fa-radio text-4xl text-zinc-700 mb-2"></i>
+                        <p class="text-zinc-500 font-bold uppercase text-xs">Live Edit / Bootleg</p>
+                    </div>
                 </div>
-                <div class="w-full h-full flex flex-col items-center justify-center bg-zinc-900 p-8 text-center placeholder-content">
-                    <i class="fa-solid fa-radio text-5xl text-zinc-700 mb-4"></i>
-                    <p class="text-zinc-500 font-bold uppercase text-sm">Artwork Placeholder 3</p>
-                </div>
+                <h4 class="text-lg font-extrabold uppercase">DESI BASS REIVOX EDIT</h4>
             </div>
-            <h3 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide">HIGHER FOR YOUR LOVE</h3>
-            <button class="px-8 py-3 border-2 border-white rounded-full font-bold tracking-widest hover:bg-white hover:text-black transition-all text-sm uppercase">
-                &#9654; LISTEN
-            </button>
         </div>
 
         <div>
-            <a href="#coverflow" class="inline-block border-b-2 border-white font-bold tracking-widest text-sm hover:opacity-75 pt-8">
-                VIEW MORE MUSIC
+            <a href="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy" target="_blank" class="inline-block border-b-2 border-white font-bold tracking-widest text-sm hover:opacity-75 pt-4 uppercase">
+                VIEW MORE ON SOUNDCLOUD &rarr;
             </a>
         </div>
     </section>
 
-    <!-- 3D Spotify Cover Flow / Music Carousel Section -->
-    <section id="coverflow" class="py-20 px-4 bg-gradient-to-b from-black via-red-950/20 to-black relative overflow-hidden reveal-on-scroll">
+    <!-- 3D SoundCloud / Cover Flow Section -->
+    <section id="coverflow" class="py-20 px-4 bg-gradient-to-b from-black via-zinc-900/40 to-black relative overflow-hidden reveal-on-scroll">
         <div class="max-w-6xl mx-auto text-center">
-            <!-- Spotify Logo Header -->
-            <div class="flex justify-center items-center gap-2 mb-8 text-green-500">
-                <i class="fa-brands fa-spotify text-3xl"></i>
-                <span class="text-white font-bold tracking-wider text-xl">Spotify Live Feed</span>
+            <!-- SoundCloud Feed Header -->
+            <div class="flex justify-center items-center gap-2 mb-8 text-orange-500">
+                <i class="fa-brands fa-soundcloud text-3xl"></i>
+                <span class="text-white font-bold tracking-wider text-xl uppercase">AOXIN REIVOX Player</span>
             </div>
 
             <!-- Carousel Display Area -->
             <div class="coverflow-container relative h-80 md:h-96 w-full flex items-center justify-center my-8">
                 <!-- Cover Flow Cards (Dynamically Processed JS) -->
                 <div id="coverflowDeck" class="relative w-full h-full flex items-center justify-center">
-                    <!-- Cards will be populated by JS -->
+                    <!-- Cards populated by JS -->
                 </div>
             </div>
 
@@ -262,54 +253,71 @@
 
                 <!-- Currently Playing Title Display -->
                 <div class="hidden sm:flex flex-col text-left px-4 border-l border-r border-white/10 mx-2 flex-grow overflow-hidden">
-                    <span id="activeTrackTitle" class="font-bold text-sm truncate">Charlie Puth - How Long</span>
-                    <span id="activeTrackArtist" class="text-xs text-gray-400 truncate">Spotify Playlist Edition</span>
+                    <span id="activeTrackTitle" class="font-bold text-sm truncate">THALAKKANAM BAILE EDIT</span>
+                    <span id="activeTrackArtist" class="text-xs text-gray-400 truncate">AOXIN REIVOX</span>
                 </div>
 
                 <div class="flex items-center gap-3 text-gray-300">
+                    <a href="https://on.soundcloud.com/poKeFsKSJLRUfMmdi9" target="_blank" title="Listen on SoundCloud"><i class="fa-brands fa-soundcloud text-sm hover:text-orange-500 cursor-pointer"></i></a>
                     <i class="fa-solid fa-share-nodes text-sm hover:text-white cursor-pointer"></i>
-                    <i class="fa-solid fa-sliders text-sm hover:text-white cursor-pointer"></i>
                     <i class="fa-solid fa-volume-high text-sm hover:text-white cursor-pointer"></i>
                 </div>
             </div>
 
             <p class="text-xs text-gray-500 mt-12 tracking-widest uppercase">
-                &copy; 2026 - Archive by / Marvel Creativestyle
+                &copy; 2026 - AOXIN REIVOX OFFICIAL
             </p>
         </div>
     </section>
 
-    <!-- Videos Section -->
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 max-w-4xl mx-auto text-center space-y-8 reveal-on-scroll border-t border-zinc-900">
+        <h2 class="text-4xl md:text-5xl font-black tracking-tight uppercase border-b-2 border-white/20 pb-4 inline-block">
+            ABOUT
+        </h2>
+        <div class="max-w-2xl mx-auto space-y-4 text-gray-300 leading-relaxed text-base md:text-lg">
+            <p class="font-semibold text-white">
+                AOXIN REIVOX is a DJ and Music Producer hailing from Kerala, India.
+            </p>
+            <p>
+                Having started his journey as a bedroom producer at the age of 17, AOXIN REIVOX has spent years crafting signature electronic rhythms, heavy baile edits, and unique regional soundscapes.
+            </p>
+            <p class="text-gray-400">
+                2026 marks an important milestone as he makes his official entry into DJing and energetic live performance sets.
+            </p>
+        </div>
+    </section>
+
+    <!-- Videos / YouTube Section -->
     <section class="py-20 px-4 max-w-5xl mx-auto text-center space-y-10 reveal-on-scroll">
         <h2 class="text-4xl md:text-5xl font-black tracking-tight uppercase border-b-2 border-white/20 pb-4 inline-block">
-            VIDEOS
+            VIDEOS &amp; SETS
         </h2>
 
         <div class="relative max-w-4xl mx-auto rounded-lg overflow-hidden border border-white/20 shadow-2xl">
-            <!-- Simulated YouTube Embed Container with Upload Overlay -->
             <div class="aspect-video bg-zinc-900 relative upload-zone" id="videoThumbCard" data-bg-id="videoThumb">
                 <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center z-20">
                     <i class="fa-solid fa-image text-3xl mb-2"></i>
                     <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Video Thumbnail</span>
                 </div>
                 
-                <div class="absolute inset-0 flex flex-col justify-between p-6 bg-gradient-to-t from-black via-transparent to-black/60 pointer-events-none">
+                <div class="absolute inset-0 flex flex-col justify-between p-6 bg-gradient-to-t from-black via-black/40 to-black/60 pointer-events-none z-10">
                     <div class="flex items-center gap-3 text-left">
-                        <div class="w-10 h-10 rounded-full bg-white text-black font-bold flex items-center justify-center">J</div>
+                        <div class="w-10 h-10 rounded-full bg-red-600 text-white font-bold flex items-center justify-center">AR</div>
                         <div>
-                            <h4 class="font-bold text-sm md:text-base">JAUZ 100% DRUM AND BASS LIVE</h4>
-                            <p class="text-xs text-gray-400">JAUZ Official Channel</p>
+                            <h4 class="font-bold text-sm md:text-base">AOXIN REIVOX OFFICIAL YOUTUBE</h4>
+                            <p class="text-xs text-gray-400">Kerala, India • DJ / Producer</p>
                         </div>
                     </div>
 
-                    <div class="self-center my-auto">
-                        <div class="w-16 h-12 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl shadow-lg cursor-pointer hover:scale-110 transition-transform">
+                    <div class="self-center my-auto pointer-events-auto">
+                        <a href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g" target="_blank" class="w-16 h-12 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl shadow-lg hover:scale-110 transition-transform">
                             <i class="fa-solid fa-play"></i>
-                        </div>
+                        </a>
                     </div>
 
                     <div class="flex justify-between items-center text-xs text-gray-300 font-semibold">
-                        <span>Watch on YouTube</span>
+                        <span>Subscribe on YouTube</span>
                         <i class="fa-brands fa-youtube text-2xl text-red-600"></i>
                     </div>
                 </div>
@@ -317,158 +325,84 @@
         </div>
 
         <div>
-            <a href="#" class="inline-block border-b-2 border-white font-bold tracking-widest text-sm hover:opacity-75">
-                VIEW MORE
+            <a href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g" target="_blank" class="inline-block border-b-2 border-white font-bold tracking-widest text-sm hover:opacity-75 uppercase">
+                VISIT YOUTUBE CHANNEL &rarr;
             </a>
         </div>
     </section>
 
     <!-- Tour Section -->
     <section id="tour" class="py-20 px-4 max-w-4xl mx-auto text-center space-y-8 reveal-on-scroll">
-        <!-- Tour Poster Placeholder -->
-        <div class="upload-zone aspect-[3/4] max-w-md mx-auto rounded-none overflow-hidden group shadow-2xl border-white/20" id="tourPosterCard" data-bg-id="tourPoster">
-            <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center">
-                <i class="fa-solid fa-file-image text-3xl mb-2"></i>
-                <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Tour Poster</span>
-            </div>
-            <div class="w-full h-full bg-zinc-950 p-6 flex flex-col justify-between text-left placeholder-content">
-                <div>
-                    <h3 class="font-display text-5xl tracking-widest border-b border-white/20 pb-2">JAUZ</h3>
-                    <p class="text-xs font-bold tracking-widest text-gray-400 my-2">LIVE IN CONCERT 2026</p>
-                    <div class="text-xs space-y-1 text-gray-300 mt-4">
-                        <div class="flex justify-between"><span>11/29/2025</span><span>Honolulu, HI</span></div>
-                        <div class="flex justify-between"><span>12/5/2025</span><span>New York, NY</span></div>
-                        <div class="flex justify-between"><span>12/26/2025</span><span>Costa Mesa, CA</span></div>
-                        <div class="flex justify-between"><span>2/14/2026</span><span>Calgary, AB</span></div>
-                        <div class="flex justify-between"><span>3/7/2026</span><span>Denver, CO</span></div>
-                    </div>
-                </div>
-                <div class="text-center pt-8 border-t border-white/20">
-                    <p class="text-xs uppercase tracking-widest text-gray-500">[Tour Poster Graphic Zone]</p>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="text-4xl md:text-5xl font-black tracking-tight uppercase">TOUR</h2>
-        <p class="text-gray-400 text-base md:text-lg tracking-wide">
-            There are no upcoming tour dates.
-        </p>
-    </section>
-
-    <!-- Twitch Banner Section -->
-    <section id="twitch" class="py-12 px-4 max-w-4xl mx-auto reveal-on-scroll">
-        <div class="upload-zone min-h-[300px] relative rounded-none flex items-center justify-center p-6 md:p-12 overflow-hidden" id="twitchBgCard" data-bg-id="twitchBg">
-            <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center z-30">
-                <i class="fa-solid fa-camera text-3xl mb-2"></i>
-                <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Twitch Overlay Photo</span>
-            </div>
-
-            <!-- Purple Twitch Card Container -->
-            <div class="relative z-20 bg-twitchPurple p-8 md:p-10 w-full max-w-md shadow-2xl text-white space-y-4">
-                <h3 class="text-2xl md:text-3xl font-black tracking-tight uppercase">
-                    JAUZ ON TWITCH
-                </h3>
-                <p class="text-sm tracking-wide text-purple-100">
-                    Follow Jauz on Twitch
-                </p>
-                <a href="https://twitch.tv" target="_blank" class="inline-block border-2 border-white px-8 py-2 font-bold tracking-widest hover:bg-white hover:text-twitchPurple transition-colors text-sm uppercase">
-                    FOLLOW
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Apparel Section -->
-    <section id="apparel" class="py-20 px-4 max-w-4xl mx-auto text-center space-y-10 reveal-on-scroll">
-        <h2 class="text-4xl md:text-5xl font-black tracking-tight uppercase">
-            APPAREL
+        <h2 class="text-4xl md:text-5xl font-black tracking-tight uppercase border-b-2 border-white/20 pb-4 inline-block">
+            LIVE / TOUR
         </h2>
-
-        <div class="upload-zone aspect-square max-w-md mx-auto rounded-none overflow-hidden group shadow-2xl" id="apparelCard" data-bg-id="apparel">
-            <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center">
-                <i class="fa-solid fa-shirt text-3xl mb-2"></i>
-                <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Apparel Image</span>
-            </div>
-            <div class="w-full h-full bg-zinc-900 flex flex-col items-center justify-center p-8 placeholder-content">
-                <i class="fa-solid fa-shirt text-6xl text-zinc-700 mb-4"></i>
-                <p class="text-zinc-500 font-bold uppercase text-sm">Official Merch Placeholder</p>
-            </div>
+        <div class="bg-zinc-950 p-8 border border-zinc-800 max-w-xl mx-auto text-center space-y-4">
+            <p class="text-sm font-bold tracking-widest text-gray-400 uppercase">2026 LIVE SHOWS INCOMING</p>
+            <p class="text-gray-300 text-base md:text-lg">
+                Shows and tour dates from Kerala &amp; beyond to be announced soon. Stay tuned!
+            </p>
         </div>
     </section>
 
-    <!-- Newsletter / Follow Section -->
+    <!-- Connect / Newsletter / Follow Section -->
     <section id="connect" class="py-20 px-4 max-w-xl mx-auto text-center space-y-8 reveal-on-scroll">
         <h2 class="text-3xl md:text-4xl font-black tracking-tight uppercase">
-            FOLLOW JAUZ
+            CONNECT WITH AOXIN REIVOX
         </h2>
 
         <!-- Email Signup Input -->
         <form onsubmit="event.preventDefault();" class="space-y-4">
-            <input type="email" placeholder="Email Address" class="w-full px-6 py-4 bg-white text-black text-center font-semibold placeholder-gray-500 focus:outline-none text-sm">
+            <input type="email" placeholder="Enter your email address" class="w-full px-6 py-4 bg-white text-black text-center font-semibold placeholder-gray-500 focus:outline-none text-sm">
             <button type="submit" class="w-full max-w-xs border-2 border-white py-3 font-bold tracking-widest hover:bg-white hover:text-black transition-colors uppercase text-sm">
-                FOLLOW
+                JOIN MAILING LIST
             </button>
         </form>
 
-        <!-- Social Icons Grid -->
-        <div class="flex flex-wrap justify-center items-center gap-6 text-xl pt-6">
-            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-brands fa-youtube"></i></a>
-            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-solid fa-music"></i></a>
-            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-brands fa-spotify"></i></a>
-            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-solid fa-link"></i></a>
-        </div>
-
-        <!-- About Button -->
-        <div class="pt-6">
-            <button class="px-10 py-3 border-2 border-white rounded-full font-bold tracking-widest hover:bg-white hover:text-black transition-all text-xs uppercase">
-                ABOUT
-            </button>
+        <!-- Social Links Grid -->
+        <div class="flex flex-wrap justify-center items-center gap-6 text-2xl pt-6">
+            <a href="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy" target="_blank" title="SoundCloud" class="hover:text-orange-500 transition-colors"><i class="fa-brands fa-soundcloud"></i></a>
+            <a href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g" target="_blank" title="YouTube" class="hover:text-red-600 transition-colors"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://aoxinreivox.bandcamp.com" target="_blank" title="Bandcamp" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-bandcamp"></i></a>
+            <a href="https://on.soundcloud.com/poKeFsKSJLRUfMmdi9" target="_blank" title="Thalakkanam Baile Edit" class="hover:text-gray-400 transition-colors"><i class="fa-solid fa-music"></i></a>
         </div>
     </section>
 
     <!-- Footer Links -->
     <footer class="py-12 border-t border-zinc-900 text-center space-y-4 text-xs font-bold tracking-widest text-gray-400">
         <div class="flex justify-center gap-6">
-            <a href="#" class="hover:text-white">CONTACT</a>
-            <a href="#" class="hover:text-white">PRIVACY</a>
-            <a href="#" class="hover:text-white">TERMS OF SERVICE</a>
+            <a href="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy" target="_blank" class="hover:text-white">SOUNDCLOUD</a>
+            <a href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g" target="_blank" class="hover:text-white">YOUTUBE</a>
+            <a href="https://aoxinreivox.bandcamp.com" target="_blank" class="hover:text-white">BANDCAMP</a>
         </div>
-        <p class="text-zinc-600 text-[10px]">ALL RIGHTS RESERVED &copy; 2026 JAUZ OFFICIAL</p>
+        <p class="text-zinc-600 text-[10px]">ALL RIGHTS RESERVED &copy; 2026 AOXIN REIVOX</p>
     </footer>
 
+    <!-- JavaScript Logic -->
     <script>
-        // Global variables for cover flow slider
+        // Cover flow track dataset initialized with AOXIN REIVOX single metadata
+        const tracks = [
+            { id: 1, title: 'THALAKKANAM BAILE EDIT', artist: 'AOXIN REIVOX', img: 'https://raw.githubusercontent.com/aoxinreivox/aoxinreivox.github.io/main/file_00000000795082119825627ce981ebd5.png' },
+            { id: 2, title: 'Kerala Baile Flip', artist: 'AOXIN REIVOX', img: '' },
+            { id: 3, title: 'Live Set Intro 2026', artist: 'AOXIN REIVOX', img: '' },
+            { id: 4, title: 'Desi Bass Edit', artist: 'AOXIN REIVOX', img: '' },
+            { id: 5, title: 'Unreleased Track', artist: 'AOXIN REIVOX', img: '' }
+        ];
+
         const coverflowDeck = document.getElementById('coverflowDeck');
         const activeTrackTitle = document.getElementById('activeTrackTitle');
         const activeTrackArtist = document.getElementById('activeTrackArtist');
         const playBtn = document.getElementById('playBtn');
 
         let isPlaying = false;
-        let activeIndex = 2; // Center card default
+        let activeIndex = 0; // Default active track set to main single
 
-        // Initial Track Dataset for Cover Flow
-        const tracks = [
-            { id: 1, title: 'Mad Mac', artist: 'Jauz Live', img: '' },
-            { id: 2, title: 'Rihanna - Man Down', artist: 'Jauz Remix', img: '' },
-            { id: 3, title: 'Charlie Puth - How Long', artist: 'Jauz Official Remix', img: '' },
-            { id: 4, title: 'Wiz Khalifa - Black & Yellow', artist: 'Jauz Flip', img: '' },
-            { id: 5, title: 'Tritonal - Get Love', artist: 'Jauz Cut', img: '' }
-        ];
-
-        /* ===================================================
-           1. Image Upload Handler Logic
-           =================================================== */
+        /* 1. Image Upload Handler Logic */
         let currentUploadTarget = null;
         const globalFileInput = document.getElementById('globalFileInput');
 
-        // Bind upload zones
         document.querySelectorAll('.upload-zone').forEach(zone => {
             zone.addEventListener('click', (e) => {
-                // Prevent trigger if child button clicked
-                if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') return;
+                if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.closest('a')) return;
                 currentUploadTarget = zone;
                 globalFileInput.click();
             });
@@ -481,18 +415,15 @@
                 reader.onload = (event) => {
                     const imgUrl = event.target.result;
                     
-                    // Set background image on the target container
                     currentUploadTarget.style.backgroundImage = `url('${imgUrl}')`;
                     currentUploadTarget.style.backgroundSize = 'cover';
                     currentUploadTarget.style.backgroundPosition = 'center';
                     
-                    // Hide placeholder text if exists
                     const placeholder = currentUploadTarget.querySelector('.placeholder-content');
                     if (placeholder) {
                         placeholder.style.opacity = '0';
                     }
 
-                    // If uploading to a Cover Flow card, update track metadata
                     const coverflowCard = currentUploadTarget.closest('.coverflow-card');
                     if (coverflowCard) {
                         const trackIdx = parseInt(coverflowCard.dataset.index);
@@ -503,9 +434,7 @@
             }
         });
 
-        /* ===================================================
-           2. 3D Cover Flow Carousel Logic
-           =================================================== */
+        /* 2. 3D Cover Flow Carousel Logic */
         function renderCoverflow() {
             coverflowDeck.innerHTML = '';
             
@@ -514,32 +443,31 @@
                 card.className = `coverflow-card upload-zone absolute w-48 h-64 sm:w-56 sm:h-72 rounded-2xl shadow-2xl flex flex-col justify-end p-4 transition-all duration-500 select-none overflow-hidden border border-white/10`;
                 card.dataset.index = index;
 
-                // Set image if uploaded
                 if (track.img) {
                     card.style.backgroundImage = `url('${track.img}')`;
+                    card.style.backgroundSize = 'cover';
+                    card.style.backgroundPosition = 'center';
                 } else {
                     card.style.backgroundColor = '#18181b';
                 }
 
-                // Inner Card Content
                 card.innerHTML = `
                     <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center z-30">
                         <i class="fa-solid fa-camera text-2xl mb-1"></i>
                         <span class="text-[10px] uppercase font-bold tracking-wider">Change Artwork</span>
                     </div>
-                    <div class="relative z-10 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-3 -mx-4 -mb-4 rounded-b-2xl">
+                    <div class="relative z-10 bg-gradient-to-t from-black/95 via-black/60 to-transparent p-3 -mx-4 -mb-4 rounded-b-2xl">
                         <p class="font-bold text-sm text-white truncate">${track.title}</p>
                         <p class="text-xs text-gray-400 truncate">${track.artist}</p>
                     </div>
                 `;
 
-                // Calculate 3D Offset Transforms
                 const offset = index - activeIndex;
                 const absOffset = Math.abs(offset);
 
-                let translateX = offset * 110; // spacing
+                let translateX = offset * 110;
                 let scale = 1 - absOffset * 0.15;
-                let rotateY = offset * -25; // 3D rotation angle
+                let rotateY = offset * -25;
                 let zIndex = 10 - absOffset;
                 let opacity = absOffset > 2 ? 0 : 1 - absOffset * 0.2;
 
@@ -555,7 +483,6 @@
                 card.style.zIndex = zIndex;
                 card.style.opacity = opacity;
 
-                // Click card to make center
                 card.addEventListener('click', (e) => {
                     if (index !== activeIndex) {
                         e.stopPropagation();
@@ -599,9 +526,7 @@
                 : '<i class="fa-solid fa-circle-play"></i>';
         });
 
-        /* ===================================================
-           3. Side Navigation Drawer Logic
-           =================================================== */
+        /* 3. Side Navigation Drawer Logic */
         const sideMenu = document.getElementById('sideMenu');
         const openMenu = document.getElementById('openMenu');
         const closeMenu = document.getElementById('closeMenu');
@@ -613,9 +538,7 @@
             link.addEventListener('click', () => sideMenu.classList.add('-translate-x-full'));
         });
 
-        /* ===================================================
-           4. Scroll Animations (IntersectionObserver)
-           =================================================== */
+        /* 4. Scroll Animations */
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -626,7 +549,7 @@
 
         document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 
-        // Initial setup
+        // On Load Initializations
         window.onload = () => {
             renderCoverflow();
             updateActiveTrack();
