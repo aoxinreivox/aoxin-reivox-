@@ -1,1149 +1,636 @@
-    color: inherit;
-    text-decoration: none;
-}
-
-img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Hidden file inputs for uploaded images */
-.file-input-hidden {
-    display: none !important;
-}
-
-/* =========================================================
-   HEADER & NAVIGATION
-========================================================= */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 78px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 35px;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    z-index: 1000;
-}
-
-.menu-button {
-    width: 45px;
-    height: 45px;
-    border: none;
-    background: transparent;
-    color: #fff;
-    font-size: 28px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-}
-
-.menu-button:hover {
-    transform: scale(1.1);
-}
-
-.brand-logo {
-    font-size: 16px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
-
-/* =========================================================
-   FULL SCREEN MENU OVERLAY
-========================================================= */
-#menu-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.98);
-    z-index: 2000;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 35px 6vw;
-    transform: translateX(-100%);
-    transition: transform 0.5s cubic-bezier(.77,0,.18,1);
-}
-
-#menu-overlay.active {
-    transform: translateX(0);
-}
-
-.menu-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.menu-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: #777;
-}
-
-.close-menu {
-    width: 45px;
-    height: 45px;
-    border: none;
-    background: transparent;
-    color: #fff;
-    font-size: 42px;
-    font-weight: 300;
-    cursor: pointer;
-    line-height: 1;
-}
-
-.menu-links {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.menu-links a {
-    font-size: clamp(34px, 6vw, 72px);
-    line-height: .95;
-    font-weight: 900;
-    letter-spacing: -2px;
-    transition: opacity .25s ease, transform .25s ease;
-    display: inline-block;
-}
-
-.menu-links a:hover {
-    opacity: .45;
-    transform: translateX(10px);
-}
-
-.menu-socials {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    border-top: 1px solid rgba(255,255,255,.15);
-    padding-top: 22px;
-}
-
-.menu-socials a {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    transition: color 0.2s ease;
-}
-
-.menu-socials a:hover {
-    color: #888;
-}
-
-/* =========================================================
-   GENERAL SECTIONS
-========================================================= */
-.section {
-    padding: 120px 40px;
-    position: relative;
-}
-
-.section-title {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: #888;
-    text-align: center;
-    margin-bottom: 45px;
-}
-
-/* Dynamic Image Placeholder Box styling */
-.img-upload-box {
-    position: relative;
-    cursor: pointer;
-    background: #111;
-    border: 1px dashed rgba(255,255,255,0.25);
-    border-radius: 18px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.img-upload-box:hover {
-    border-color: rgba(255,255,255,0.6);
-    background: #181818;
-}
-
-.img-upload-box .upload-hint {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.65);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 10;
-    padding: 15px;
-    text-align: center;
-}
-
-.img-upload-box.empty .upload-hint,
-.img-upload-box:hover .upload-hint {
-    opacity: 1;
-}
-
-.img-upload-box .upload-hint i {
-    font-size: 24px;
-}
-
-.img-upload-box .upload-hint span {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-/* =========================================================
-   HOME / HERO
-========================================================= */
-#home {
-    min-height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 130px 40px 90px;
-    text-align: center;
-    overflow: hidden;
-}
-
-.hero-bg-layer {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    z-index: 0;
-    transition: filter 0.3s ease;
-}
-
-.hero-bg-layer::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,.30), rgba(0,0,0,.92));
-}
-
-.hero-content {
-    width: 100%;
-    position: relative;
-    z-index: 1;
-}
-
-.hero-title {
-    font-size: clamp(55px, 10vw, 150px);
-    line-height: .85;
-    letter-spacing: -6px;
-    font-weight: 900;
-    margin-bottom: 22px;
-    text-transform: uppercase;
-}
-
-.hero-subtitle {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: #aaa;
-}
-
-.change-bg-btn {
-    position: absolute;
-    top: 90px;
-    right: 25px;
-    z-index: 10;
-    background: rgba(0,0,0,0.6);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: #fff;
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    cursor: pointer;
-    backdrop-filter: blur(5px);
-    transition: all 0.2s ease;
-}
-
-.change-bg-btn:hover {
-    background: #fff;
-    color: #000;
-}
-
-/* =========================================================
-   MUSIC (3D Spotify Carousel Flow)
-========================================================= */
-#music {
-    background: #050505;
-    padding-top: 120px;
-    padding-bottom: 130px;
-}
-
-.music-heading {
-    text-align: center;
-    font-size: clamp(60px, 10vw, 140px);
-    line-height: .85;
-    letter-spacing: -6px;
-    font-weight: 900;
-    margin-bottom: 65px;
-}
-
-.coverflow-container {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto 40px;
-    perspective: 1000px;
-    position: relative;
-    height: 380px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.coverflow-track {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform-style: preserve-3d;
-}
-
-.coverflow-item {
-    position: absolute;
-    width: 245px;
-    height: 325px;
-    transition: transform 0.5s ease, opacity 0.5s ease, z-index 0.5s ease;
-    cursor: pointer;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.7);
-}
-
-.coverflow-item.active {
-    transform: translateX(0) translateZ(100px) rotateY(0deg);
-    z-index: 10;
-    opacity: 1;
-}
-
-.coverflow-item.left-1 {
-    transform: translateX(-160px) translateZ(0px) rotateY(25deg);
-    z-index: 5;
-    opacity: 0.7;
-}
-
-.coverflow-item.right-1 {
-    transform: translateX(160px) translateZ(0px) rotateY(-25deg);
-    z-index: 5;
-    opacity: 0.7;
-}
-
-.coverflow-item.left-2 {
-    transform: translateX(-290px) translateZ(-100px) rotateY(35deg);
-    z-index: 2;
-    opacity: 0.3;
-}
-
-.coverflow-item.right-2 {
-    transform: translateX(290px) translateZ(-100px) rotateY(-35deg);
-    z-index: 2;
-    opacity: 0.3;
-}
-
-.coverflow-item.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.music-details {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.music-name {
-    font-size: 16px;
-    font-weight: 800;
-    line-height: 1.3;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
-
-.music-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 140px;
-    height: 45px;
-    border: 1px solid rgba(255,255,255,.4);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    transition: .25s ease;
-    border-radius: 4px;
-}
-
-.music-button:hover {
-    background: #fff;
-    color: #000;
-}
-
-/* =========================================================
-   VIDEOS
-========================================================= */
-#videos {
-    background: #000;
-}
-
-.video-container {
-    width: 100%;
-    max-width: 1050px;
-    margin: auto;
-}
-
-.video-heading {
-    text-align: center;
-    font-size: clamp(60px, 9vw, 125px);
-    line-height: .9;
-    letter-spacing: -5px;
-    font-weight: 900;
-    margin-bottom: 55px;
-}
-
-.video-box {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background: #111;
-    border: 1px solid rgba(255,255,255,.12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 18px;
-}
-
-.youtube-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 18px 28px;
-    border: 1px solid #fff;
-    background: rgba(0,0,0,.65);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    transition: .25s ease;
-    z-index: 5;
-    border-radius: 4px;
-}
-
-.youtube-button:hover {
-    background: #fff;
-    color: #000;
-}
-
-/* =========================================================
-   LIVE MOMENTS SLIDER
-========================================================= */
-#live {
-    background: #050505;
-}
-
-.live-heading {
-    text-align: center;
-    font-size: clamp(55px, 9vw, 125px);
-    line-height: .9;
-    letter-spacing: -5px;
-    font-weight: 900;
-    margin-bottom: 55px;
-}
-
-.live-slider {
-    width: 100%;
-    max-width: 900px;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
-    background: #111;
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 18px;
-}
-
-.live-track {
-    display: flex;
-    transition: transform .6s ease;
-}
-
-.live-slide {
-    flex: 0 0 100%;
-    aspect-ratio: 16 / 9;
-    background: #111;
-    position: relative;
-}
-
-.slider-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 45px;
-    height: 45px;
-    border: 1px solid rgba(255,255,255,.5);
-    background: rgba(0,0,0,.65);
-    color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 15;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.25s ease;
-}
-
-.slider-button:hover {
-    background: #fff;
-    color: #000;
-}
-
-.slider-prev { left: 18px; }
-.slider-next { right: 18px; }
-
-.slider-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
-}
-
-.slider-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #444;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.slider-dot.active {
-    background: #fff;
-}
-
-/* =========================================================
-   TOUR
-========================================================= */
-#tour {
-    background: #000;
-}
-
-.tour-layout {
-    width: 100%;
-    max-width: 1150px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: minmax(260px,.85fr) minmax(300px,1.15fr);
-    gap: 65px;
-    align-items: center;
-}
-
-.tour-poster {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    max-width: 480px;
-}
-
-.tour-content {
-    max-width: 600px;
-}
-
-.tour-content h2 {
-    font-size: clamp(70px, 10vw, 145px);
-    line-height: .82;
-    letter-spacing: -6px;
-    font-weight: 900;
-    margin-bottom: 50px;
-}
-
-.tour-status {
-    border-top: 1px solid rgba(255,255,255,.2);
-    border-bottom: 1px solid rgba(255,255,255,.2);
-    padding: 30px 0;
-    font-size: 13px;
-    color: #999;
-    line-height: 1.8;
-}
-
-.tour-status strong {
-    display: block;
-    color: #fff;
-    font-size: 10px;
-    letter-spacing: 2px;
-    margin-bottom: 8px;
-}
-
-/* =========================================================
-   ABOUT
-========================================================= */
-#about {
-    background: #050505;
-}
-
-.about-layout {
-    width: 100%;
-    max-width: 1100px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 65px;
-    align-items: center;
-}
-
-.about-image {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-}
-
-.about-heading {
-    text-align: center;
-    font-size: clamp(60px, 9vw, 125px);
-    line-height: .85;
-    letter-spacing: -5px;
-    font-weight: 900;
-    margin-bottom: 35px;
-}
-
-.about-text {
-    color: #999;
-    font-size: 14px;
-    line-height: 2;
-    max-width: 600px;
-    margin: auto;
-}
-
-/* =========================================================
-   SOCIALS
-========================================================= */
-#socials {
-    background: #000;
-}
-
-.social-heading {
-    text-align: center;
-    font-size: clamp(60px, 9vw, 125px);
-    line-height: .85;
-    letter-spacing: -5px;
-    font-weight: 900;
-    margin-bottom: 55px;
-}
-
-.social-grid {
-    width: 100%;
-    max-width: 1050px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 1px;
-    background: rgba(255,255,255,.15);
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-.social-box {
-    min-height: 140px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: #000;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 3px;
-    transition: .25s ease;
-}
-
-.social-box i {
-    font-size: 24px;
-}
-
-.social-box:hover {
-    background: #fff;
-    color: #000;
-}
-
-/* =========================================================
-   ENQUIRY
-========================================================= */
-#enquiry {
-    background: #050505;
-    padding-bottom: 120px;
-}
-
-.enquiry-wrap {
-    max-width: 900px;
-    margin: auto;
-    text-align: center;
-}
-
-.enquiry-title {
-    font-size: clamp(55px, 9vw, 125px);
-    line-height: .85;
-    letter-spacing: -5px;
-    font-weight: 900;
-    margin-bottom: 55px;
-}
-
-.contact-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.contact-button {
-    width: 150px;
-    height: 55px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(255,255,255,.5);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    transition: .25s ease;
-    border-radius: 4px;
-}
-
-.contact-button:hover {
-    background: #fff;
-    color: #000;
-}
-
-/* =========================================================
-   RESPONSIVE DESIGN
-========================================================= */
-@media (max-width: 900px) {
-    .section { padding: 100px 30px; }
-    .tour-layout, .about-layout { grid-template-columns: 1fr; gap: 40px; }
-    .tour-poster { margin: auto; }
-    .tour-content, .about-text { text-align: center; margin: auto; }
-    .social-grid { grid-template-columns: repeat(2,1fr); }
-}
-
-@media (max-width: 600px) {
-    header { height: 70px; padding: 0 20px; }
-    .section { padding: 80px 20px; }
-    .hero-title { letter-spacing: -3px; }
-    .coverflow-item { width: 200px; height: 270px; }
-    .social-grid { grid-template-columns: repeat(2, 1fr); }
-    .contact-button { width: 130px; height: 50px; }
-}
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAUZ - Official Website Replica</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Montserrat & Anton -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#080808',
+                        twitchPurple: '#6441a5',
+                        brandAccent: '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        display: ['Anton', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #080808;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-display {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        /* Cover Flow 3D Perspective Styles */
+        .coverflow-container {
+            perspective: 1000px;
+        }
+
+        .coverflow-card {
+            transition: all 0.5s ease-in-out;
+            transform-style: preserve-3d;
+        }
+
+        /* Image Placeholder Zone Styling */
+        .upload-zone {
+            position: relative;
+            background-color: #141414;
+            border: 2px dashed #333333;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .upload-zone:hover {
+            border-color: #ffffff;
+            background-color: #1c1c1c;
+        }
+
+        .upload-zone:hover .upload-overlay {
+            opacity: 1;
+        }
+
+        .upload-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Custom Glassmorphism Player */
+        .glass-player {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Hide Scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Smooth reveal animation */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-darkBg text-white antialiased selection:bg-white selection:text-black">
 
-<!-- Hidden Global File Input for uploading images -->
-<input type="file" id="globalFileInput" class="file-input-hidden" accept="image/*">
-
-<!-- =======================================================
-     HEADER
-======================================================= -->
-<header>
-    <button class="menu-button" id="menuButton" aria-label="Open menu">
-        ☰
-    </button>
-    <div class="brand-logo">AOXIN REIVOX</div>
-    <div style="width: 45px;"></div>
-</header>
-
-<!-- =======================================================
-     NAVIGATION MENU OVERLAY
-======================================================= -->
-<div id="menu-overlay">
-    <div class="menu-top">
-        <div class="menu-label">NAVIGATION</div>
-        <button class="close-menu" id="closeMenu" aria-label="Close menu">&times;</button>
+    <!-- Navigation Overlay Menu -->
+    <div id="sideMenu" class="fixed inset-0 bg-black/95 z-50 transform -translate-x-full transition-transform duration-500 flex flex-col justify-center items-center gap-8">
+        <button id="closeMenu" class="absolute top-6 left-6 text-2xl text-white hover:text-gray-400 p-2">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <a href="#music" class="menu-link text-3xl font-extrabold tracking-widest hover:text-gray-400">MUSIC</a>
+        <a href="#coverflow" class="menu-link text-3xl font-extrabold tracking-widest hover:text-gray-400">PLAYER</a>
+        <a href="#tour" class="menu-link text-3xl font-extrabold tracking-widest hover:text-gray-400">TOUR</a>
+        <a href="#twitch" class="menu-link text-3xl font-extrabold tracking-widest hover:text-gray-400">TWITCH</a>
+        <a href="#apparel" class="menu-link text-3xl font-extrabold tracking-widest hover:text-gray-400">APPAREL</a>
+        <a href="#connect" class="menu-link text-3xl font-extrabold tracking-widest hover:text-gray-400">CONNECT</a>
     </div>
 
-    <nav class="menu-links">
-        <a href="#home">HOME</a>
-        <a href="#music">MUSIC</a>
-        <a href="#videos">VIDEOS</a>
-        <a href="#live">LIVE MOMENTS</a>
-        <a href="#tour">TOUR</a>
-        <a href="#about">ABOUT</a>
-        <a href="#socials">SOCIALS</a>
-        <a href="#enquiry">ENQUIRY</a>
-    </nav>
+    <!-- Hidden global file input for dynamic image uploads -->
+    <input type="file" id="globalFileInput" accept="image/*" class="hidden">
 
-    <div class="menu-socials">
-        <a href="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy" target="_blank">SOUNDCLOUD</a>
-        <a href="https://open.spotify.com/" target="_blank">SPOTIFY</a>
-        <a href="https://aoxinreivox.bandcamp.com" target="_blank">BANDCAMP</a>
-        <a href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g" target="_blank">YOUTUBE</a>
-        <a href="https://www.instagram.com/aoxinreivox/" target="_blank">INSTAGRAM</a>
-    </div>
-</div>
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full flex flex-col justify-between p-6 md:p-10 upload-zone group" id="heroBg" data-bg-id="hero">
+        <div class="upload-overlay absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none">
+            <i class="fa-solid fa-cloud-arrow-up text-4xl mb-2 text-white"></i>
+            <span class="text-sm font-semibold tracking-wider uppercase">Click to change Hero Background</span>
+        </div>
 
-<!-- =======================================================
-     HOME / HERO SECTION
-======================================================= -->
-<section id="home">
-    <div class="hero-bg-layer" id="heroBg" style="background-image: url('https://raw.githubusercontent.com/aoxinreivox/aoxinreivox.github.io/main/croud1.jpg');"></div>
-    
-    <button class="change-bg-btn" onclick="triggerHeroBgUpload()">
-        <i class="fa-solid fa-camera"></i> CHANGE BG
-    </button>
-
-    <div class="hero-content">
-        <h1 class="hero-title">AOXIN REIVOX</h1>
-        <p class="hero-subtitle">DJ · PRODUCER</p>
-    </div>
-</section>
-
-<!-- =======================================================
-     MUSIC SECTION (3D Cover Flow Carousel)
-======================================================= -->
-<section id="music" class="section">
-    <h2 class="music-heading">MUSIC</h2>
-
-    <div class="coverflow-container">
-        <div class="coverflow-track" id="coverflowTrack">
-            <!-- Cover Slide 1 -->
-            <div class="coverflow-item img-upload-box" data-index="0" data-title="THALAKKANAM<br>BAILE EDIT" data-link="https://on.soundcloud.com/poKeFsKSJLRUfMmdi9">
-                <img src="https://raw.githubusercontent.com/aoxinreivox/aoxinreivox.github.io/main/file_00000000795082119825627ce981ebd5.png" alt="Thalakkanam Baile Edit">
-                <div class="upload-hint">
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                    <span>CHANGE COVER</span>
-                </div>
+        <!-- Top Navigation Bar -->
+        <div class="relative z-30 flex justify-between items-center w-full max-w-7xl mx-auto">
+            <button id="openMenu" class="text-2xl p-2 hover:opacity-80 transition-opacity">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            
+            <!-- Logo SVG Replica -->
+            <div class="w-16 h-16 flex items-center justify-center font-display text-4xl tracking-tighter uppercase font-black italic border-2 border-white p-2">
+                JAUZ
             </div>
+            
+            <div class="w-8"></div> <!-- Spacer for symmetry -->
+        </div>
 
-            <!-- Placeholder Slide 2 -->
-            <div class="coverflow-item img-upload-box empty" data-index="1" data-title="UNRELEASED<br>TRACK 02" data-link="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy">
-                <div class="upload-hint">
-                    <i class="fa-solid fa-plus"></i>
-                    <span>UPLOAD COVER</span>
-                </div>
-            </div>
-
-            <!-- Placeholder Slide 3 -->
-            <div class="coverflow-item img-upload-box empty" data-index="2" data-title="NEW SINGLE<br>COMING SOON" data-link="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy">
-                <div class="upload-hint">
-                    <i class="fa-solid fa-plus"></i>
-                    <span>UPLOAD COVER</span>
-                </div>
+        <!-- Hero Bottom Title Overlay -->
+        <div class="relative z-30 max-w-7xl mx-auto w-full text-center pb-12">
+            <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-4 opacity-90 drop-shadow-md">
+                OFFICIAL ARCHIVE
+            </h1>
+            <p class="text-sm md:text-base tracking-widest text-gray-300 uppercase">
+                Scroll Down To Explore
+            </p>
+            <div class="mt-6 animate-bounce">
+                <i class="fa-solid fa-chevron-down text-xl"></i>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="music-details">
-        <div class="music-name" id="currentTrackTitle">THALAKKANAM<br>BAILE EDIT</div>
-        <a id="currentTrackBtn" href="https://on.soundcloud.com/poKeFsKSJLRUfMmdi9" target="_blank" class="music-button">LISTEN</a>
-    </div>
-</section>
+    <!-- Music Section -->
+    <section id="music" class="py-20 px-4 max-w-4xl mx-auto text-center space-y-16 reveal-on-scroll">
+        <h2 class="text-4xl md:text-5xl font-black tracking-tight uppercase border-b-2 border-white/20 pb-4 inline-block">
+            MUSIC
+        </h2>
 
-<!-- =======================================================
-     VIDEOS SECTION
-======================================================= -->
-<section id="videos" class="section">
-    <div class="video-container">
-        <h2 class="video-heading">VIDEOS</h2>
-
-        <div class="video-box img-upload-box empty" id="videoBox">
-            <div class="upload-hint" style="z-index:2;">
-                <i class="fa-solid fa-image"></i>
-                <span>UPLOAD VIDEO THUMBNAIL</span>
+        <!-- Track 1: Don't Lose Your Head -->
+        <div class="space-y-6">
+            <div class="upload-zone aspect-square max-w-md mx-auto rounded-none overflow-hidden group shadow-2xl" id="track1Card" data-bg-id="track1">
+                <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center">
+                    <i class="fa-solid fa-camera text-3xl mb-2"></i>
+                    <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Cover</span>
+                </div>
+                <!-- Default Placeholder Visual -->
+                <div class="w-full h-full flex flex-col items-center justify-center bg-zinc-900 p-8 text-center placeholder-content">
+                    <i class="fa-solid fa-music text-5xl text-zinc-700 mb-4"></i>
+                    <p class="text-zinc-500 font-bold uppercase text-sm">Artwork Placeholder 1</p>
+                </div>
             </div>
-            <a href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g" target="_blank" class="youtube-button">
-                <i class="fa-brands fa-youtube"></i> WATCH ON YOUTUBE
+            <h3 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide">DON'T LOSE YOUR HEAD</h3>
+            <button class="px-8 py-3 border-2 border-white rounded-full font-bold tracking-widest hover:bg-white hover:text-black transition-all text-sm uppercase">
+                &#9654; LISTEN
+            </button>
+        </div>
+
+        <!-- Track 2: Chains -->
+        <div class="space-y-6 pt-10">
+            <div class="upload-zone aspect-square max-w-md mx-auto rounded-none overflow-hidden group shadow-2xl" id="track2Card" data-bg-id="track2">
+                <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center">
+                    <i class="fa-solid fa-camera text-3xl mb-2"></i>
+                    <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Cover</span>
+                </div>
+                <div class="w-full h-full flex flex-col items-center justify-center bg-zinc-900 p-8 text-center placeholder-content">
+                    <i class="fa-solid fa-compact-disc text-5xl text-zinc-700 mb-4"></i>
+                    <p class="text-zinc-500 font-bold uppercase text-sm">Artwork Placeholder 2</p>
+                </div>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide">CHAINS</h3>
+            <button class="px-8 py-3 border-2 border-white rounded-full font-bold tracking-widest hover:bg-white hover:text-black transition-all text-sm uppercase">
+                &#9654; LISTEN
+            </button>
+        </div>
+
+        <!-- Track 3: Higher For Your Love -->
+        <div class="space-y-6 pt-10">
+            <div class="upload-zone aspect-square max-w-md mx-auto rounded-none overflow-hidden group shadow-2xl" id="track3Card" data-bg-id="track3">
+                <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center">
+                    <i class="fa-solid fa-camera text-3xl mb-2"></i>
+                    <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Cover</span>
+                </div>
+                <div class="w-full h-full flex flex-col items-center justify-center bg-zinc-900 p-8 text-center placeholder-content">
+                    <i class="fa-solid fa-radio text-5xl text-zinc-700 mb-4"></i>
+                    <p class="text-zinc-500 font-bold uppercase text-sm">Artwork Placeholder 3</p>
+                </div>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide">HIGHER FOR YOUR LOVE</h3>
+            <button class="px-8 py-3 border-2 border-white rounded-full font-bold tracking-widest hover:bg-white hover:text-black transition-all text-sm uppercase">
+                &#9654; LISTEN
+            </button>
+        </div>
+
+        <div>
+            <a href="#coverflow" class="inline-block border-b-2 border-white font-bold tracking-widest text-sm hover:opacity-75 pt-8">
+                VIEW MORE MUSIC
             </a>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- =======================================================
-     LIVE MOMENTS SECTION
-======================================================= -->
-<section id="live" class="section">
-    <h2 class="live-heading">LIVE MOMENTS</h2>
+    <!-- 3D Spotify Cover Flow / Music Carousel Section -->
+    <section id="coverflow" class="py-20 px-4 bg-gradient-to-b from-black via-red-950/20 to-black relative overflow-hidden reveal-on-scroll">
+        <div class="max-w-6xl mx-auto text-center">
+            <!-- Spotify Logo Header -->
+            <div class="flex justify-center items-center gap-2 mb-8 text-green-500">
+                <i class="fa-brands fa-spotify text-3xl"></i>
+                <span class="text-white font-bold tracking-wider text-xl">Spotify Live Feed</span>
+            </div>
 
-    <div class="live-slider">
-        <div class="live-track" id="liveTrack">
-            <div class="live-slide img-upload-box empty">
-                <div class="upload-hint">
-                    <i class="fa-solid fa-plus"></i>
-                    <span>UPLOAD LIVE PHOTO 1</span>
+            <!-- Carousel Display Area -->
+            <div class="coverflow-container relative h-80 md:h-96 w-full flex items-center justify-center my-8">
+                <!-- Cover Flow Cards (Dynamically Processed JS) -->
+                <div id="coverflowDeck" class="relative w-full h-full flex items-center justify-center">
+                    <!-- Cards will be populated by JS -->
                 </div>
             </div>
-            <div class="live-slide img-upload-box empty">
-                <div class="upload-hint">
-                    <i class="fa-solid fa-plus"></i>
-                    <span>UPLOAD LIVE PHOTO 2</span>
+
+            <!-- Glassmorphism Audio Control Bar -->
+            <div class="max-w-xl mx-auto glass-player rounded-full p-4 px-6 flex items-center justify-between shadow-2xl mt-8">
+                <button id="prevTrack" class="text-gray-300 hover:text-white transition-colors p-2 text-lg">
+                    <i class="fa-solid fa-backward-step"></i>
+                </button>
+                <button id="playBtn" class="text-white hover:scale-110 transition-transform p-2 text-2xl">
+                    <i class="fa-solid fa-circle-play"></i>
+                </button>
+                <button id="nextTrack" class="text-gray-300 hover:text-white transition-colors p-2 text-lg">
+                    <i class="fa-solid fa-forward-step"></i>
+                </button>
+
+                <!-- Currently Playing Title Display -->
+                <div class="hidden sm:flex flex-col text-left px-4 border-l border-r border-white/10 mx-2 flex-grow overflow-hidden">
+                    <span id="activeTrackTitle" class="font-bold text-sm truncate">Charlie Puth - How Long</span>
+                    <span id="activeTrackArtist" class="text-xs text-gray-400 truncate">Spotify Playlist Edition</span>
+                </div>
+
+                <div class="flex items-center gap-3 text-gray-300">
+                    <i class="fa-solid fa-share-nodes text-sm hover:text-white cursor-pointer"></i>
+                    <i class="fa-solid fa-sliders text-sm hover:text-white cursor-pointer"></i>
+                    <i class="fa-solid fa-volume-high text-sm hover:text-white cursor-pointer"></i>
                 </div>
             </div>
-            <div class="live-slide img-upload-box empty">
-                <div class="upload-hint">
-                    <i class="fa-solid fa-plus"></i>
-                    <span>UPLOAD LIVE PHOTO 3</span>
+
+            <p class="text-xs text-gray-500 mt-12 tracking-widest uppercase">
+                &copy; 2026 - Archive by / Marvel Creativestyle
+            </p>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section class="py-20 px-4 max-w-5xl mx-auto text-center space-y-10 reveal-on-scroll">
+        <h2 class="text-4xl md:text-5xl font-black tracking-tight uppercase border-b-2 border-white/20 pb-4 inline-block">
+            VIDEOS
+        </h2>
+
+        <div class="relative max-w-4xl mx-auto rounded-lg overflow-hidden border border-white/20 shadow-2xl">
+            <!-- Simulated YouTube Embed Container with Upload Overlay -->
+            <div class="aspect-video bg-zinc-900 relative upload-zone" id="videoThumbCard" data-bg-id="videoThumb">
+                <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center z-20">
+                    <i class="fa-solid fa-image text-3xl mb-2"></i>
+                    <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Video Thumbnail</span>
                 </div>
-            </div>
-        </div>
+                
+                <div class="absolute inset-0 flex flex-col justify-between p-6 bg-gradient-to-t from-black via-transparent to-black/60 pointer-events-none">
+                    <div class="flex items-center gap-3 text-left">
+                        <div class="w-10 h-10 rounded-full bg-white text-black font-bold flex items-center justify-center">J</div>
+                        <div>
+                            <h4 class="font-bold text-sm md:text-base">JAUZ 100% DRUM AND BASS LIVE</h4>
+                            <p class="text-xs text-gray-400">JAUZ Official Channel</p>
+                        </div>
+                    </div>
 
-        <button class="slider-button slider-prev" id="prevSlide" aria-label="Previous photo">‹</button>
-        <button class="slider-button slider-next" id="nextSlide" aria-label="Next photo">›</button>
-    </div>
+                    <div class="self-center my-auto">
+                        <div class="w-16 h-12 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl shadow-lg cursor-pointer hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
 
-    <div class="slider-dots">
-        <span class="slider-dot active" data-slide="0"></span>
-        <span class="slider-dot" data-slide="1"></span>
-        <span class="slider-dot" data-slide="2"></span>
-    </div>
-</section>
-
-<!-- =======================================================
-     TOUR SECTION
-======================================================= -->
-<section id="tour" class="section">
-    <div class="tour-layout">
-        <div class="tour-poster img-upload-box empty">
-            <div class="upload-hint">
-                <i class="fa-solid fa-plus"></i>
-                <span>UPLOAD TOUR POSTER</span>
-            </div>
-        </div>
-
-        <div class="tour-content">
-            <h2>TOUR</h2>
-            <div class="tour-status">
-                <strong>UPCOMING DATES</strong>
-                There are no upcoming tour dates currently listed.
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- =======================================================
-     ABOUT SECTION
-======================================================= -->
-<section id="about" class="section">
-    <div class="about-layout">
-        <div class="about-image img-upload-box empty">
-            <div class="upload-hint">
-                <i class="fa-solid fa-plus"></i>
-                <span>UPLOAD ARTIST PHOTO</span>
+                    <div class="flex justify-between items-center text-xs text-gray-300 font-semibold">
+                        <span>Watch on YouTube</span>
+                        <i class="fa-brands fa-youtube text-2xl text-red-600"></i>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div>
-            <h2 class="about-heading">ABOUT</h2>
-            <p class="about-text">
-                Aoxin Reivox is a producer and DJ from Kerala, India.
-                His musical journey began at 17 as a bedroom producer,
-                exploring electronic music and developing his own sound.
-                After years of focusing on production, 2026 marks the
-                beginning of his journey into DJing and live gigs.
-            </p>
+            <a href="#" class="inline-block border-b-2 border-white font-bold tracking-widest text-sm hover:opacity-75">
+                VIEW MORE
+            </a>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- =======================================================
-     SOCIALS SECTION
-======================================================= -->
-<section id="socials" class="section">
-    <h2 class="social-heading">SOCIALS</h2>
-
-    <div class="social-grid">
-        <a class="social-box" href="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy" target="_blank">
-            <i class="fa-brands fa-soundcloud"></i>
-            <span>SOUNDCLOUD</span>
-        </a>
-        <a class="social-box" href="https://open.spotify.com/" target="_blank">
-            <i class="fa-brands fa-spotify"></i>
-            <span>SPOTIFY</span>
-        </a>
-        <a class="social-box" href="https://aoxinreivox.bandcamp.com" target="_blank">
-            <i class="fa-brands fa-bandcamp"></i>
-            <span>BANDCAMP</span>
-        </a>
-        <a class="social-box" href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g" target="_blank">
-            <i class="fa-brands fa-youtube"></i>
-            <span>YOUTUBE</span>
-        </a>
-    </div>
-</section>
-
-<!-- =======================================================
-     ENQUIRY SECTION
-======================================================= -->
-<section id="enquiry" class="section">
-    <div class="enquiry-wrap">
-        <div class="section-title">ENQUIRY</div>
-        <div class="enquiry-title">LET'S<br>CONNECT.</div>
-
-        <div class="contact-buttons">
-            <a class="contact-button" href="mailto:contact@aoxinreivox.com">EMAIL</a>
-            <a class="contact-button" href="tel:">CALL</a>
+    <!-- Tour Section -->
+    <section id="tour" class="py-20 px-4 max-w-4xl mx-auto text-center space-y-8 reveal-on-scroll">
+        <!-- Tour Poster Placeholder -->
+        <div class="upload-zone aspect-[3/4] max-w-md mx-auto rounded-none overflow-hidden group shadow-2xl border-white/20" id="tourPosterCard" data-bg-id="tourPoster">
+            <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center">
+                <i class="fa-solid fa-file-image text-3xl mb-2"></i>
+                <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Tour Poster</span>
+            </div>
+            <div class="w-full h-full bg-zinc-950 p-6 flex flex-col justify-between text-left placeholder-content">
+                <div>
+                    <h3 class="font-display text-5xl tracking-widest border-b border-white/20 pb-2">JAUZ</h3>
+                    <p class="text-xs font-bold tracking-widest text-gray-400 my-2">LIVE IN CONCERT 2026</p>
+                    <div class="text-xs space-y-1 text-gray-300 mt-4">
+                        <div class="flex justify-between"><span>11/29/2025</span><span>Honolulu, HI</span></div>
+                        <div class="flex justify-between"><span>12/5/2025</span><span>New York, NY</span></div>
+                        <div class="flex justify-between"><span>12/26/2025</span><span>Costa Mesa, CA</span></div>
+                        <div class="flex justify-between"><span>2/14/2026</span><span>Calgary, AB</span></div>
+                        <div class="flex justify-between"><span>3/7/2026</span><span>Denver, CO</span></div>
+                    </div>
+                </div>
+                <div class="text-center pt-8 border-t border-white/20">
+                    <p class="text-xs uppercase tracking-widest text-gray-500">[Tour Poster Graphic Zone]</p>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
 
-<!-- =======================================================
-     JAVASCRIPT LOGIC
-======================================================= -->
-<script>
-/* =========================
-   MENU OVERLAY TOGGLE
-========================= */
-const menuButton = document.getElementById("menuButton");
-const closeMenu = document.getElementById("closeMenu");
-const menuOverlay = document.getElementById("menu-overlay");
-const menuLinks = document.querySelectorAll(".menu-links a");
+        <h2 class="text-4xl md:text-5xl font-black tracking-tight uppercase">TOUR</h2>
+        <p class="text-gray-400 text-base md:text-lg tracking-wide">
+            There are no upcoming tour dates.
+        </p>
+    </section>
 
-menuButton.addEventListener("click", () => menuOverlay.classList.add("active"));
-closeMenu.addEventListener("click", () => menuOverlay.classList.remove("active"));
-menuLinks.forEach(link => {
-    link.addEventListener("click", () => menuOverlay.classList.remove("active"));
-});
+    <!-- Twitch Banner Section -->
+    <section id="twitch" class="py-12 px-4 max-w-4xl mx-auto reveal-on-scroll">
+        <div class="upload-zone min-h-[300px] relative rounded-none flex items-center justify-center p-6 md:p-12 overflow-hidden" id="twitchBgCard" data-bg-id="twitchBg">
+            <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center z-30">
+                <i class="fa-solid fa-camera text-3xl mb-2"></i>
+                <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Twitch Overlay Photo</span>
+            </div>
 
-/* =========================
-   UNIVERSAL IMAGE UPLOADER
-========================= */
-const globalFileInput = document.getElementById('globalFileInput');
-let targetElementForUpload = null;
+            <!-- Purple Twitch Card Container -->
+            <div class="relative z-20 bg-twitchPurple p-8 md:p-10 w-full max-w-md shadow-2xl text-white space-y-4">
+                <h3 class="text-2xl md:text-3xl font-black tracking-tight uppercase">
+                    JAUZ ON TWITCH
+                </h3>
+                <p class="text-sm tracking-wide text-purple-100">
+                    Follow Jauz on Twitch
+                </p>
+                <a href="https://twitch.tv" target="_blank" class="inline-block border-2 border-white px-8 py-2 font-bold tracking-widest hover:bg-white hover:text-twitchPurple transition-colors text-sm uppercase">
+                    FOLLOW
+                </a>
+            </div>
+        </div>
+    </section>
 
-document.querySelectorAll('.img-upload-box').forEach(box => {
-    box.addEventListener('click', (e) => {
-        // Prevent click if button inside box was clicked
-        if (e.target.tagName === 'A' || e.target.closest('a')) return;
-        targetElementForUpload = box;
-        globalFileInput.click();
-    });
-});
+    <!-- Apparel Section -->
+    <section id="apparel" class="py-20 px-4 max-w-4xl mx-auto text-center space-y-10 reveal-on-scroll">
+        <h2 class="text-4xl md:text-5xl font-black tracking-tight uppercase">
+            APPAREL
+        </h2>
 
-function triggerHeroBgUpload() {
-    targetElementForUpload = document.getElementById('heroBg');
-    globalFileInput.click();
-}
+        <div class="upload-zone aspect-square max-w-md mx-auto rounded-none overflow-hidden group shadow-2xl" id="apparelCard" data-bg-id="apparel">
+            <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center">
+                <i class="fa-solid fa-shirt text-3xl mb-2"></i>
+                <span class="text-xs uppercase font-bold tracking-wider">Click to Upload Apparel Image</span>
+            </div>
+            <div class="w-full h-full bg-zinc-900 flex flex-col items-center justify-center p-8 placeholder-content">
+                <i class="fa-solid fa-shirt text-6xl text-zinc-700 mb-4"></i>
+                <p class="text-zinc-500 font-bold uppercase text-sm">Official Merch Placeholder</p>
+            </div>
+        </div>
+    </section>
 
-globalFileInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file || !targetElementForUpload) return;
+    <!-- Newsletter / Follow Section -->
+    <section id="connect" class="py-20 px-4 max-w-xl mx-auto text-center space-y-8 reveal-on-scroll">
+        <h2 class="text-3xl md:text-4xl font-black tracking-tight uppercase">
+            FOLLOW JAUZ
+        </h2>
 
-    const reader = new FileReader();
-    reader.onload = function(evt) {
-        const imageUrl = evt.target.result;
+        <!-- Email Signup Input -->
+        <form onsubmit="event.preventDefault();" class="space-y-4">
+            <input type="email" placeholder="Email Address" class="w-full px-6 py-4 bg-white text-black text-center font-semibold placeholder-gray-500 focus:outline-none text-sm">
+            <button type="submit" class="w-full max-w-xs border-2 border-white py-3 font-bold tracking-widest hover:bg-white hover:text-black transition-colors uppercase text-sm">
+                FOLLOW
+            </button>
+        </form>
 
-        if (targetElementForUpload.id === 'heroBg') {
-            targetElementForUpload.style.backgroundImage = `url('${imageUrl}')`;
-        } else {
-            let img = targetElementForUpload.querySelector('img');
-            if (!img) {
-                img = document.createElement('img');
-                targetElementForUpload.appendChild(img);
+        <!-- Social Icons Grid -->
+        <div class="flex flex-wrap justify-center items-center gap-6 text-xl pt-6">
+            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-solid fa-music"></i></a>
+            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-brands fa-spotify"></i></a>
+            <a href="#" class="hover:text-gray-400 transition-colors"><i class="fa-solid fa-link"></i></a>
+        </div>
+
+        <!-- About Button -->
+        <div class="pt-6">
+            <button class="px-10 py-3 border-2 border-white rounded-full font-bold tracking-widest hover:bg-white hover:text-black transition-all text-xs uppercase">
+                ABOUT
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer Links -->
+    <footer class="py-12 border-t border-zinc-900 text-center space-y-4 text-xs font-bold tracking-widest text-gray-400">
+        <div class="flex justify-center gap-6">
+            <a href="#" class="hover:text-white">CONTACT</a>
+            <a href="#" class="hover:text-white">PRIVACY</a>
+            <a href="#" class="hover:text-white">TERMS OF SERVICE</a>
+        </div>
+        <p class="text-zinc-600 text-[10px]">ALL RIGHTS RESERVED &copy; 2026 JAUZ OFFICIAL</p>
+    </footer>
+
+    <script>
+        // Global variables for cover flow slider
+        const coverflowDeck = document.getElementById('coverflowDeck');
+        const activeTrackTitle = document.getElementById('activeTrackTitle');
+        const activeTrackArtist = document.getElementById('activeTrackArtist');
+        const playBtn = document.getElementById('playBtn');
+
+        let isPlaying = false;
+        let activeIndex = 2; // Center card default
+
+        // Initial Track Dataset for Cover Flow
+        const tracks = [
+            { id: 1, title: 'Mad Mac', artist: 'Jauz Live', img: '' },
+            { id: 2, title: 'Rihanna - Man Down', artist: 'Jauz Remix', img: '' },
+            { id: 3, title: 'Charlie Puth - How Long', artist: 'Jauz Official Remix', img: '' },
+            { id: 4, title: 'Wiz Khalifa - Black & Yellow', artist: 'Jauz Flip', img: '' },
+            { id: 5, title: 'Tritonal - Get Love', artist: 'Jauz Cut', img: '' }
+        ];
+
+        /* ===================================================
+           1. Image Upload Handler Logic
+           =================================================== */
+        let currentUploadTarget = null;
+        const globalFileInput = document.getElementById('globalFileInput');
+
+        // Bind upload zones
+        document.querySelectorAll('.upload-zone').forEach(zone => {
+            zone.addEventListener('click', (e) => {
+                // Prevent trigger if child button clicked
+                if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') return;
+                currentUploadTarget = zone;
+                globalFileInput.click();
+            });
+        });
+
+        globalFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file && currentUploadTarget) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const imgUrl = event.target.result;
+                    
+                    // Set background image on the target container
+                    currentUploadTarget.style.backgroundImage = `url('${imgUrl}')`;
+                    currentUploadTarget.style.backgroundSize = 'cover';
+                    currentUploadTarget.style.backgroundPosition = 'center';
+                    
+                    // Hide placeholder text if exists
+                    const placeholder = currentUploadTarget.querySelector('.placeholder-content');
+                    if (placeholder) {
+                        placeholder.style.opacity = '0';
+                    }
+
+                    // If uploading to a Cover Flow card, update track metadata
+                    const coverflowCard = currentUploadTarget.closest('.coverflow-card');
+                    if (coverflowCard) {
+                        const trackIdx = parseInt(coverflowCard.dataset.index);
+                        tracks[trackIdx].img = imgUrl;
+                    }
+                };
+                reader.readAsDataURL(file);
             }
-            img.src = imageUrl;
-            targetElementForUpload.classList.remove('empty');
+        });
+
+        /* ===================================================
+           2. 3D Cover Flow Carousel Logic
+           =================================================== */
+        function renderCoverflow() {
+            coverflowDeck.innerHTML = '';
+            
+            tracks.forEach((track, index) => {
+                const card = document.createElement('div');
+                card.className = `coverflow-card upload-zone absolute w-48 h-64 sm:w-56 sm:h-72 rounded-2xl shadow-2xl flex flex-col justify-end p-4 transition-all duration-500 select-none overflow-hidden border border-white/10`;
+                card.dataset.index = index;
+
+                // Set image if uploaded
+                if (track.img) {
+                    card.style.backgroundImage = `url('${track.img}')`;
+                } else {
+                    card.style.backgroundColor = '#18181b';
+                }
+
+                // Inner Card Content
+                card.innerHTML = `
+                    <div class="upload-overlay absolute inset-0 flex flex-col items-center justify-center z-30">
+                        <i class="fa-solid fa-camera text-2xl mb-1"></i>
+                        <span class="text-[10px] uppercase font-bold tracking-wider">Change Artwork</span>
+                    </div>
+                    <div class="relative z-10 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-3 -mx-4 -mb-4 rounded-b-2xl">
+                        <p class="font-bold text-sm text-white truncate">${track.title}</p>
+                        <p class="text-xs text-gray-400 truncate">${track.artist}</p>
+                    </div>
+                `;
+
+                // Calculate 3D Offset Transforms
+                const offset = index - activeIndex;
+                const absOffset = Math.abs(offset);
+
+                let translateX = offset * 110; // spacing
+                let scale = 1 - absOffset * 0.15;
+                let rotateY = offset * -25; // 3D rotation angle
+                let zIndex = 10 - absOffset;
+                let opacity = absOffset > 2 ? 0 : 1 - absOffset * 0.2;
+
+                if (offset === 0) {
+                    scale = 1.15;
+                    rotateY = 0;
+                    zIndex = 20;
+                    opacity = 1;
+                    card.classList.add('ring-2', 'ring-white/50');
+                }
+
+                card.style.transform = `translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`;
+                card.style.zIndex = zIndex;
+                card.style.opacity = opacity;
+
+                // Click card to make center
+                card.addEventListener('click', (e) => {
+                    if (index !== activeIndex) {
+                        e.stopPropagation();
+                        activeIndex = index;
+                        updateActiveTrack();
+                        renderCoverflow();
+                    }
+                });
+
+                coverflowDeck.appendChild(card);
+            });
         }
-    };
-    reader.readAsDataURL(file);
-    globalFileInput.value = '';
-});
 
-/* =========================
-   3D COVER FLOW CAROUSEL
-========================= */
-const coverItems = document.querySelectorAll('.coverflow-item');
-const trackTitle = document.getElementById('currentTrackTitle');
-const trackBtn = document.getElementById('currentTrackBtn');
-let activeMusicIndex = 0;
-
-function updateCoverflow() {
-    const total = coverItems.length;
-    coverItems.forEach((item, index) => {
-        item.className = 'coverflow-item img-upload-box';
-        if (!item.querySelector('img')) item.classList.add('empty');
-
-        let offset = index - activeMusicIndex;
-        if (offset < -2) offset += total;
-        if (offset > 2) offset -= total;
-
-        if (offset === 0) {
-            item.classList.add('active');
-            trackTitle.innerHTML = item.dataset.title || 'TRACK TITLE';
-            trackBtn.href = item.dataset.link || '#';
-        } else if (offset === -1) {
-            item.classList.add('left-1');
-        } else if (offset === 1) {
-            item.classList.add('right-1');
-        } else if (offset === -2) {
-            item.classList.add('left-2');
-        } else if (offset === 2) {
-            item.classList.add('right-2');
-        } else {
-            item.classList.add('hidden');
+        function updateActiveTrack() {
+            const current = tracks[activeIndex];
+            activeTrackTitle.textContent = current.title;
+            activeTrackArtist.textContent = current.artist;
         }
-    });
-}
 
-coverItems.forEach((item, index) => {
-    item.addEventListener('click', () => {
-        if (activeMusicIndex !== index) {
-            activeMusicIndex = index;
-            updateCoverflow();
-        }
-    });
-});
-updateCoverflow();
+        // Controls
+        document.getElementById('prevTrack').addEventListener('click', () => {
+            if (activeIndex > 0) {
+                activeIndex--;
+                updateActiveTrack();
+                renderCoverflow();
+            }
+        });
 
-/* =========================
-   LIVE MOMENTS SLIDER
-========================= */
-const liveTrack = document.getElementById("liveTrack");
-const prevSlide = document.getElementById("prevSlide");
-const nextSlide = document.getElementById("nextSlide");
-const dots = document.querySelectorAll(".slider-dot");
-let currentLiveSlide = 0;
-const totalLiveSlides = 3;
+        document.getElementById('nextTrack').addEventListener('click', () => {
+            if (activeIndex < tracks.length - 1) {
+                activeIndex++;
+                updateActiveTrack();
+                renderCoverflow();
+            }
+        });
 
-function showSlide(index) {
-    if (index < 0) currentLiveSlide = totalLiveSlides - 1;
-    else if (index >= totalLiveSlides) currentLiveSlide = 0;
-    else currentLiveSlide = index;
+        playBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            playBtn.innerHTML = isPlaying 
+                ? '<i class="fa-solid fa-circle-pause"></i>' 
+                : '<i class="fa-solid fa-circle-play"></i>';
+        });
 
-    liveTrack.style.transform = `translateX(-${currentLiveSlide * 100}%)`;
-    dots.forEach((dot, idx) => {
-        dot.classList.toggle("active", idx === currentLiveSlide);
-    });
-}
+        /* ===================================================
+           3. Side Navigation Drawer Logic
+           =================================================== */
+        const sideMenu = document.getElementById('sideMenu');
+        const openMenu = document.getElementById('openMenu');
+        const closeMenu = document.getElementById('closeMenu');
 
-prevSlide.addEventListener("click", () => showSlide(currentLiveSlide - 1));
-nextSlide.addEventListener("click", () => showSlide(currentLiveSlide + 1));
-dots.forEach(dot => {
-    dot.addEventListener("click", () => showSlide(Number(dot.dataset.slide)));
-});
+        openMenu.addEventListener('click', () => sideMenu.classList.remove('-translate-x-full'));
+        closeMenu.addEventListener('click', () => sideMenu.classList.add('-translate-x-full'));
 
-setInterval(() => showSlide(currentLiveSlide + 1), 6000);
-</script>
+        document.querySelectorAll('.menu-link').forEach(link => {
+            link.addEventListener('click', () => sideMenu.classList.add('-translate-x-full'));
+        });
 
+        /* ===================================================
+           4. Scroll Animations (IntersectionObserver)
+           =================================================== */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Initial setup
+        window.onload = () => {
+            renderCoverflow();
+            updateActiveTrack();
+        };
+    </script>
 </body>
 </html>
