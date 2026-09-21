@@ -3,19 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Aoxin Reivox</title>
 
+<!-- Fonts & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-
-/* =========================
-   RESET
-========================= */
-
+/* =========================================================
+   RESET & BASE STYLES
+========================================================= */
 * {
     margin: 0;
     padding: 0;
@@ -31,6 +30,7 @@ body {
     color: #fff;
     font-family: "Montserrat", sans-serif;
     overflow-x: hidden;
+    line-height: 1.5;
 }
 
 a {
@@ -40,76 +40,74 @@ a {
 
 img {
     display: block;
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
+/* Hidden file inputs for uploaded images */
+.file-input-hidden {
+    display: none !important;
+}
 
-/* =========================
-   HEADER
-========================= */
-
+/* =========================================================
+   HEADER & NAVIGATION
+========================================================= */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 78px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 0 35px;
-
-    background: rgba(0,0,0,.78);
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(12px);
-
-    border-bottom: 1px solid rgba(255,255,255,.08);
-
+    border-bottom: 1px solid rgba(255,255,255,0.08);
     z-index: 1000;
 }
 
 .menu-button {
     width: 45px;
     height: 45px;
-
     border: none;
     background: transparent;
-
     color: #fff;
-    font-size: 25px;
-
+    font-size: 28px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
 }
 
-.header-logo-space {
-    width: 90px;
-    height: 45px;
+.menu-button:hover {
+    transform: scale(1.1);
 }
 
+.brand-logo {
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
 
-/* =========================
-   FULLSCREEN MENU
-========================= */
-
+/* =========================================================
+   FULL SCREEN MENU OVERLAY
+========================================================= */
 #menu-overlay {
     position: fixed;
     inset: 0;
-
-    background: rgba(0,0,0,.97);
-
+    background: rgba(0,0,0,0.98);
     z-index: 2000;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     padding: 35px 6vw;
-
     transform: translateX(-100%);
-
-    transition:
-        transform .5s cubic-bezier(.77,0,.18,1);
+    transition: transform 0.5s cubic-bezier(.77,0,.18,1);
 }
 
 #menu-overlay.active {
@@ -132,15 +130,13 @@ header {
 .close-menu {
     width: 45px;
     height: 45px;
-
     border: none;
     background: transparent;
-
     color: #fff;
     font-size: 42px;
     font-weight: 300;
-
     cursor: pointer;
+    line-height: 1;
 }
 
 .menu-links {
@@ -150,42 +146,44 @@ header {
 }
 
 .menu-links a {
-    font-size: clamp(34px, 6vw, 82px);
+    font-size: clamp(34px, 6vw, 72px);
     line-height: .95;
-
     font-weight: 900;
-    letter-spacing: -3px;
-
-    transition: opacity .25s ease;
+    letter-spacing: -2px;
+    transition: opacity .25s ease, transform .25s ease;
+    display: inline-block;
 }
 
 .menu-links a:hover {
     opacity: .45;
+    transform: translateX(10px);
 }
 
 .menu-socials {
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
-
     border-top: 1px solid rgba(255,255,255,.15);
-
     padding-top: 22px;
 }
 
 .menu-socials a {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 2px;
+    transition: color 0.2s ease;
 }
 
+.menu-socials a:hover {
+    color: #888;
+}
 
-/* =========================
-   GENERAL SECTION
-========================= */
-
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
 .section {
-    padding: 120px 6vw;
+    padding: 120px 40px;
+    position: relative;
 }
 
 .section-title {
@@ -193,392 +191,369 @@ header {
     font-weight: 700;
     letter-spacing: 4px;
     color: #888;
-
     text-align: center;
-
     margin-bottom: 45px;
 }
 
+/* Dynamic Image Placeholder Box styling */
+.img-upload-box {
+    position: relative;
+    cursor: pointer;
+    background: #111;
+    border: 1px dashed rgba(255,255,255,0.25);
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
 
-/* =========================
-   HERO
-========================= */
+.img-upload-box:hover {
+    border-color: rgba(255,255,255,0.6);
+    background: #181818;
+}
 
+.img-upload-box .upload-hint {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    padding: 15px;
+    text-align: center;
+}
+
+.img-upload-box.empty .upload-hint,
+.img-upload-box:hover .upload-hint {
+    opacity: 1;
+}
+
+.img-upload-box .upload-hint i {
+    font-size: 24px;
+}
+
+.img-upload-box .upload-hint span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   HOME / HERO
+========================================================= */
 #home {
     min-height: 100vh;
-
     position: relative;
-
     display: flex;
     align-items: flex-end;
     justify-content: center;
-
-    padding: 130px 6vw 90px;
-
+    padding: 130px 40px 90px;
     text-align: center;
-
     overflow: hidden;
 }
 
-#home::before {
-    content: "";
-
+.hero-bg-layer {
     position: absolute;
     inset: 0;
-
-    background-image:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,.20),
-            rgba(0,0,0,.92)
-        ),
-        url("https://raw.githubusercontent.com/aoxinreivox/aoxinreivox.github.io/main/croud1.jpg");
-
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-
     z-index: 0;
+    transition: filter 0.3s ease;
+}
+
+.hero-bg-layer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,.30), rgba(0,0,0,.92));
 }
 
 .hero-content {
     width: 100%;
-
     position: relative;
     z-index: 1;
 }
 
 .hero-title {
     font-size: clamp(55px, 10vw, 150px);
-
     line-height: .85;
-
-    letter-spacing: -7px;
-
+    letter-spacing: -6px;
     font-weight: 900;
-
     margin-bottom: 22px;
+    text-transform: uppercase;
 }
 
 .hero-subtitle {
     font-size: 13px;
-
     font-weight: 700;
-
     letter-spacing: 4px;
-
     color: #aaa;
 }
 
+.change-bg-btn {
+    position: absolute;
+    top: 90px;
+    right: 25px;
+    z-index: 10;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.2s ease;
+}
 
-/* =========================
-   MUSIC
-========================= */
+.change-bg-btn:hover {
+    background: #fff;
+    color: #000;
+}
 
+/* =========================================================
+   MUSIC (3D Spotify Carousel Flow)
+========================================================= */
 #music {
     background: #050505;
-    padding: 120px 6vw;
+    padding-top: 120px;
+    padding-bottom: 130px;
 }
 
 .music-heading {
     text-align: center;
-
     font-size: clamp(60px, 10vw, 140px);
-
     line-height: .85;
-
-    letter-spacing: -7px;
-
+    letter-spacing: -6px;
     font-weight: 900;
-
     margin-bottom: 65px;
 }
 
-
-/* =========================
-   MUSIC GRID
-========================= */
-
-.music-grid {
+.coverflow-container {
     width: 100%;
-
-    max-width: 900px;
-
-    margin: 0 auto;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 28px;
+    max-width: 1000px;
+    margin: 0 auto 40px;
+    perspective: 1000px;
+    position: relative;
+    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.music-card {
-    min-width: 0;
-}
-
-
-/* =========================
-   MUSIC COVER
-========================= */
-
-.music-cover {
+.coverflow-track {
+    position: relative;
     width: 100%;
-
-    aspect-ratio: 1 / 1;
-
-    overflow: hidden;
-
-    background: #111;
-
-    border: 1px solid rgba(255,255,255,.10);
-
-    border-radius: 20px;
-}
-
-
-/* COVER IMAGE */
-
-.music-cover img {
-    width: 100%;
-
     height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-
-    transition: transform .35s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
 }
 
-.music-card:hover .music-cover img {
-    transform: scale(1.025);
+.coverflow-item {
+    position: absolute;
+    width: 245px;
+    height: 325px;
+    transition: transform 0.5s ease, opacity 0.5s ease, z-index 0.5s ease;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.7);
 }
 
+.coverflow-item.active {
+    transform: translateX(0) translateZ(100px) rotateY(0deg);
+    z-index: 10;
+    opacity: 1;
+}
 
-/* MUSIC NAME */
+.coverflow-item.left-1 {
+    transform: translateX(-160px) translateZ(0px) rotateY(25deg);
+    z-index: 5;
+    opacity: 0.7;
+}
+
+.coverflow-item.right-1 {
+    transform: translateX(160px) translateZ(0px) rotateY(-25deg);
+    z-index: 5;
+    opacity: 0.7;
+}
+
+.coverflow-item.left-2 {
+    transform: translateX(-290px) translateZ(-100px) rotateY(35deg);
+    z-index: 2;
+    opacity: 0.3;
+}
+
+.coverflow-item.right-2 {
+    transform: translateX(290px) translateZ(-100px) rotateY(-35deg);
+    z-index: 2;
+    opacity: 0.3;
+}
+
+.coverflow-item.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.music-details {
+    text-align: center;
+    margin-top: 10px;
+}
 
 .music-name {
-    font-size: 14px;
-
+    font-size: 16px;
     font-weight: 800;
-
-    line-height: 1.25;
-
+    line-height: 1.3;
     letter-spacing: 1px;
-
-    margin-top: 18px;
-
-    min-height: 38px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
 }
-
-
-/* LISTEN BUTTON */
 
 .music-button {
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
-    width: 120px;
-
+    width: 140px;
     height: 45px;
-
-    margin-top: 13px;
-
     border: 1px solid rgba(255,255,255,.4);
-
     color: #fff;
-
-    font-size: 9px;
-
+    font-size: 10px;
     font-weight: 700;
-
     letter-spacing: 2px;
-
-    text-decoration: none;
-
     transition: .25s ease;
+    border-radius: 4px;
 }
 
 .music-button:hover {
     background: #fff;
-
     color: #000;
 }
 
-
-/* =========================
+/* =========================================================
    VIDEOS
-========================= */
-
+========================================================= */
 #videos {
     background: #000;
 }
 
 .video-container {
     width: 100%;
-
     max-width: 1050px;
-
     margin: auto;
 }
 
 .video-heading {
     text-align: center;
-
     font-size: clamp(60px, 9vw, 125px);
-
     line-height: .9;
-
-    letter-spacing: -6px;
-
+    letter-spacing: -5px;
     font-weight: 900;
-
     margin-bottom: 55px;
 }
 
 .video-box {
     position: relative;
-
     width: 100%;
-
     aspect-ratio: 16 / 9;
-
     overflow: hidden;
-
-    background:
-        linear-gradient(
-            rgba(0,0,0,.35),
-            rgba(0,0,0,.70)
-        ),
-        url("");
-
-    background-size: cover;
-    background-position: center;
-
+    background: #111;
     border: 1px solid rgba(255,255,255,.12);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 18px;
 }
 
 .youtube-button {
     display: inline-flex;
-
     align-items: center;
     justify-content: center;
-
+    gap: 10px;
     padding: 18px 28px;
-
     border: 1px solid #fff;
-
-    background: rgba(0,0,0,.55);
-
+    background: rgba(0,0,0,.65);
     font-size: 10px;
-
     font-weight: 700;
-
     letter-spacing: 3px;
-
     transition: .25s ease;
+    z-index: 5;
+    border-radius: 4px;
 }
 
 .youtube-button:hover {
     background: #fff;
-
     color: #000;
 }
 
-
-/* =========================
-   LIVE MOMENTS
-========================= */
-
+/* =========================================================
+   LIVE MOMENTS SLIDER
+========================================================= */
 #live {
     background: #050505;
 }
 
 .live-heading {
     text-align: center;
-
     font-size: clamp(55px, 9vw, 125px);
-
     line-height: .9;
-
-    letter-spacing: -6px;
-
+    letter-spacing: -5px;
     font-weight: 900;
-
     margin-bottom: 55px;
 }
 
 .live-slider {
+    width: 100%;
     max-width: 900px;
-
     margin: auto;
-
     position: relative;
-
     overflow: hidden;
-
     background: #111;
-
     border: 1px solid rgba(255,255,255,.12);
-
     border-radius: 18px;
 }
 
 .live-track {
     display: flex;
-
     transition: transform .6s ease;
 }
 
 .live-slide {
     flex: 0 0 100%;
-
     aspect-ratio: 16 / 9;
-
     background: #111;
-
-    overflow: hidden;
-}
-
-.live-slide img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
+    position: relative;
 }
 
 .slider-button {
     position: absolute;
-
     top: 50%;
-
     transform: translateY(-50%);
-
     width: 45px;
     height: 45px;
-
     border: 1px solid rgba(255,255,255,.5);
-
     background: rgba(0,0,0,.65);
-
     color: #fff;
-
     font-size: 20px;
-
     cursor: pointer;
-
-    z-index: 5;
+    z-index: 15;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
 }
 
 .slider-button:hover {
@@ -586,83 +561,50 @@ header {
     color: #000;
 }
 
-.slider-prev {
-    left: 18px;
-}
-
-.slider-next {
-    right: 18px;
-}
+.slider-prev { left: 18px; }
+.slider-next { right: 18px; }
 
 .slider-dots {
     display: flex;
-
     justify-content: center;
-
     gap: 8px;
-
     margin-top: 20px;
 }
 
 .slider-dot {
-    width: 7px;
-    height: 7px;
-
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-
-    background: #555;
-
+    background: #444;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 .slider-dot.active {
     background: #fff;
 }
 
-
-/* =========================
+/* =========================================================
    TOUR
-========================= */
-
+========================================================= */
 #tour {
     background: #000;
 }
 
 .tour-layout {
+    width: 100%;
     max-width: 1150px;
-
     margin: auto;
-
     display: grid;
-
-    grid-template-columns:
-        minmax(260px,.85fr)
-        minmax(300px,1.15fr);
-
+    grid-template-columns: minmax(260px,.85fr) minmax(300px,1.15fr);
     gap: 65px;
-
     align-items: center;
 }
 
 .tour-poster {
     width: 100%;
-
     aspect-ratio: 3 / 4;
-
     max-width: 480px;
-
-    object-fit: cover;
-
-    background:
-        linear-gradient(
-            135deg,
-            #101010,
-            #242424
-        );
-
-    border: 1px solid rgba(255,255,255,.12);
-
-    border-radius: 18px;
 }
 
 .tour-content {
@@ -670,178 +612,114 @@ header {
 }
 
 .tour-content h2 {
-    font-size: clamp(70px,10vw,145px);
-
+    font-size: clamp(70px, 10vw, 145px);
     line-height: .82;
-
-    letter-spacing: -7px;
-
+    letter-spacing: -6px;
     font-weight: 900;
-
     margin-bottom: 50px;
 }
 
 .tour-status {
     border-top: 1px solid rgba(255,255,255,.2);
-
     border-bottom: 1px solid rgba(255,255,255,.2);
-
     padding: 30px 0;
-
     font-size: 13px;
-
     color: #999;
-
     line-height: 1.8;
 }
 
 .tour-status strong {
     display: block;
-
     color: #fff;
-
     font-size: 10px;
-
     letter-spacing: 2px;
-
     margin-bottom: 8px;
 }
 
-
-/* =========================
+/* =========================================================
    ABOUT
-========================= */
-
+========================================================= */
 #about {
     background: #050505;
 }
 
 .about-layout {
+    width: 100%;
     max-width: 1100px;
-
     margin: auto;
-
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     gap: 65px;
-
     align-items: center;
 }
 
 .about-image {
     width: 100%;
-
     aspect-ratio: 4 / 5;
-
-    background:
-        linear-gradient(
-            135deg,
-            #101010,
-            #242424
-        );
-
-    border: 1px solid rgba(255,255,255,.12);
-
-    overflow: hidden;
-
-    border-radius: 18px;
-}
-
-.about-image img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
 }
 
 .about-heading {
     text-align: center;
-
     font-size: clamp(60px, 9vw, 125px);
-
     line-height: .85;
-
-    letter-spacing: -6px;
-
+    letter-spacing: -5px;
     font-weight: 900;
-
-    margin-bottom: 45px;
+    margin-bottom: 35px;
 }
 
 .about-text {
     color: #999;
-
     font-size: 14px;
-
     line-height: 2;
-
     max-width: 600px;
-
     margin: auto;
 }
 
-
-/* =========================
+/* =========================================================
    SOCIALS
-========================= */
-
+========================================================= */
 #socials {
     background: #000;
 }
 
 .social-heading {
     text-align: center;
-
     font-size: clamp(60px, 9vw, 125px);
-
     line-height: .85;
-
-    letter-spacing: -6px;
-
+    letter-spacing: -5px;
     font-weight: 900;
-
     margin-bottom: 55px;
 }
 
 .social-grid {
+    width: 100%;
     max-width: 1050px;
-
     margin: auto;
-
     display: grid;
-
     grid-template-columns: repeat(4,1fr);
-
     gap: 1px;
-
     background: rgba(255,255,255,.15);
-
     border: 1px solid rgba(255,255,255,.15);
-
     border-radius: 16px;
-
     overflow: hidden;
 }
 
 .social-box {
-    min-height: 150px;
-
+    min-height: 140px;
     display: flex;
-
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    gap: 12px;
     background: #000;
-
     font-size: 11px;
-
     font-weight: 800;
-
     letter-spacing: 3px;
-
     transition: .25s ease;
+}
+
+.social-box i {
+    font-size: 24px;
 }
 
 .social-box:hover {
@@ -849,63 +727,46 @@ header {
     color: #000;
 }
 
-
-/* =========================
+/* =========================================================
    ENQUIRY
-========================= */
-
+========================================================= */
 #enquiry {
     background: #050505;
-
-    padding-bottom: 100px;
+    padding-bottom: 120px;
 }
 
 .enquiry-wrap {
     max-width: 900px;
-
     margin: auto;
-
     text-align: center;
 }
 
 .enquiry-title {
     font-size: clamp(55px, 9vw, 125px);
-
     line-height: .85;
-
-    letter-spacing: -6px;
-
+    letter-spacing: -5px;
     font-weight: 900;
-
     margin-bottom: 55px;
 }
 
 .contact-buttons {
     display: flex;
-
     justify-content: center;
-
     gap: 15px;
 }
 
 .contact-button {
     width: 150px;
     height: 55px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     border: 1px solid rgba(255,255,255,.5);
-
     font-size: 10px;
-
     font-weight: 700;
-
     letter-spacing: 3px;
-
     transition: .25s ease;
+    border-radius: 4px;
 }
 
 .contact-button:hover {
@@ -913,897 +774,411 @@ header {
     color: #000;
 }
 
-
-/* =========================
-   DESKTOP / LAPTOP
-========================= */
-
-@media (min-width: 901px) {
-
-    .section,
-    #music {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-
-    .music-grid {
-        grid-template-columns:
-            repeat(3, minmax(220px, 280px));
-
-        justify-content: center;
-
-        gap: 30px;
-    }
-
-    .music-cover {
-        border-radius: 20px;
-    }
-
-    .video-container {
-        max-width: 1050px;
-    }
-
-    .live-slider {
-        max-width: 900px;
-    }
-
-}
-
-
-/* =========================
-   TABLET
-========================= */
-
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
 @media (max-width: 900px) {
-
-    .music-grid {
-        grid-template-columns: 1fr 1fr;
-
-        max-width: 650px;
-    }
-
-    .tour-layout {
-        grid-template-columns: 1fr;
-
-        gap: 50px;
-    }
-
-    .tour-poster {
-        max-width: 500px;
-        margin: auto;
-    }
-
-    .tour-content {
-        max-width: 700px;
-
-        margin: auto;
-
-        text-align: center;
-    }
-
-    .about-layout {
-        grid-template-columns: 1fr;
-
-        gap: 50px;
-    }
-
-    .about-image {
-        max-width: 500px;
-
-        margin: auto;
-    }
-
-    .about-text {
-        text-align: center;
-    }
-
-    .social-grid {
-        grid-template-columns: repeat(2,1fr);
-    }
-
+    .section { padding: 100px 30px; }
+    .tour-layout, .about-layout { grid-template-columns: 1fr; gap: 40px; }
+    .tour-poster { margin: auto; }
+    .tour-content, .about-text { text-align: center; margin: auto; }
+    .social-grid { grid-template-columns: repeat(2,1fr); }
 }
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
-
-    #home::before {
-        background-position: center center;
-    }
-
-    .hero-title {
-        font-size: clamp(48px, 15vw, 90px);
-
-        letter-spacing: -4px;
-    }
-
-}
-
 
 @media (max-width: 600px) {
-
-    header {
-        height: 70px;
-
-        padding: 0 20px;
-    }
-
-    .section,
-    #music {
-        padding: 90px 20px;
-    }
-
-    .hero-title {
-        letter-spacing: -4px;
-    }
-
-    .music-grid {
-        grid-template-columns: 1fr;
-
-        max-width: 500px;
-
-        gap: 45px;
-    }
-
-    .music-heading,
-    .video-heading,
-    .live-heading,
-    .social-heading,
-    .about-heading {
-        letter-spacing: -4px;
-    }
-
-    .video-box {
-        aspect-ratio: 16 / 10;
-    }
-
-    .live-slider {
-        width: 100%;
-    }
-
-    .live-slide {
-        aspect-ratio: 4 / 3;
-    }
-
-    .tour-content h2 {
-        letter-spacing: -4px;
-    }
-
-    .enquiry-title {
-        letter-spacing: -4px;
-    }
-
-    .contact-buttons {
-        gap: 10px;
-    }
-
-    .contact-button {
-        width: 130px;
-        height: 50px;
-    }
-
-    #menu-overlay {
-        padding: 25px 20px;
-    }
-
-    .menu-links {
-        gap: 12px;
-    }
-
-    .menu-links a {
-        letter-spacing: -2px;
-    }
-
-    .menu-socials {
-        gap: 15px;
-    }
-
-    .music-cover {
-        border-radius: 16px;
-    }
-
+    header { height: 70px; padding: 0 20px; }
+    .section { padding: 80px 20px; }
+    .hero-title { letter-spacing: -3px; }
+    .coverflow-item { width: 200px; height: 270px; }
+    .social-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-button { width: 130px; height: 50px; }
 }
-
 </style>
 </head>
-
-
 <body>
 
+<!-- Hidden Global File Input for uploading images -->
+<input type="file" id="globalFileInput" class="file-input-hidden" accept="image/*">
 
-<!-- =========================
+<!-- =======================================================
      HEADER
-========================= -->
-
+======================================================= -->
 <header>
-
-    <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Open menu"
-    >
+    <button class="menu-button" id="menuButton" aria-label="Open menu">
         ☰
     </button>
-
-    <div
-        class="header-logo-space"
-        aria-hidden="true"
-    ></div>
-
+    <div class="brand-logo">AOXIN REIVOX</div>
+    <div style="width: 45px;"></div>
 </header>
 
-
-
-<!-- =========================
-     FULLSCREEN MENU
-========================= -->
-
+<!-- =======================================================
+     NAVIGATION MENU OVERLAY
+======================================================= -->
 <div id="menu-overlay">
-
     <div class="menu-top">
-
-        <div class="menu-label">
-            NAVIGATION
-        </div>
-
-        <button
-            class="close-menu"
-            id="closeMenu"
-            aria-label="Close menu"
-        >
-            ×
-        </button>
-
+        <div class="menu-label">NAVIGATION</div>
+        <button class="close-menu" id="closeMenu" aria-label="Close menu">&times;</button>
     </div>
-
 
     <nav class="menu-links">
-
         <a href="#home">HOME</a>
-
         <a href="#music">MUSIC</a>
-
         <a href="#videos">VIDEOS</a>
-
         <a href="#live">LIVE MOMENTS</a>
-
         <a href="#tour">TOUR</a>
-
         <a href="#about">ABOUT</a>
-
         <a href="#socials">SOCIALS</a>
-
         <a href="#enquiry">ENQUIRY</a>
-
     </nav>
 
-
     <div class="menu-socials">
-
-        <a
-            href="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy"
-            target="_blank"
-        >
-            SOUNDCLOUD
-        </a>
-
-        <a
-            href="https://open.spotify.com/"
-            target="_blank"
-        >
-            SPOTIFY
-        </a>
-
-        <a
-            href="https://aoxinreivox.bandcamp.com"
-            target="_blank"
-        >
-            BANDCAMP
-        </a>
-
-        <a
-            href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g"
-            target="_blank"
-        >
-            YOUTUBE
-        </a>
-
-        <a
-            href="https://www.instagram.com/aoxinreivox/"
-            target="_blank"
-        >
-            INSTAGRAM
-        </a>
-
+        <a href="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy" target="_blank">SOUNDCLOUD</a>
+        <a href="https://open.spotify.com/" target="_blank">SPOTIFY</a>
+        <a href="https://aoxinreivox.bandcamp.com" target="_blank">BANDCAMP</a>
+        <a href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g" target="_blank">YOUTUBE</a>
+        <a href="https://www.instagram.com/aoxinreivox/" target="_blank">INSTAGRAM</a>
     </div>
-
 </div>
 
-
-
-<!-- =========================
-     HOME
-========================= -->
-
+<!-- =======================================================
+     HOME / HERO SECTION
+======================================================= -->
 <section id="home">
+    <div class="hero-bg-layer" id="heroBg" style="background-image: url('https://raw.githubusercontent.com/aoxinreivox/aoxinreivox.github.io/main/croud1.jpg');"></div>
+    
+    <button class="change-bg-btn" onclick="triggerHeroBgUpload()">
+        <i class="fa-solid fa-camera"></i> CHANGE BG
+    </button>
 
     <div class="hero-content">
-
-        <h1 class="hero-title">
-            AOXIN REIVOX
-        </h1>
-
-        <p class="hero-subtitle">
-            DJ · PRODUCER
-        </p>
-
+        <h1 class="hero-title">AOXIN REIVOX</h1>
+        <p class="hero-subtitle">DJ · PRODUCER</p>
     </div>
-
 </section>
 
-
-
-<!-- =========================
-     MUSIC
-========================= -->
-
+<!-- =======================================================
+     MUSIC SECTION (3D Cover Flow Carousel)
+======================================================= -->
 <section id="music" class="section">
+    <h2 class="music-heading">MUSIC</h2>
 
-    <h2 class="music-heading">
-        MUSIC
-    </h2>
-
-
-    <div class="music-grid">
-
-
-        <!-- THALAKKANAM -->
-
-        <div class="music-card">
-
-            <a
-                href="https://on.soundcloud.com/poKeFsKSJLRUfMmdi9"
-                target="_blank"
-            >
-
-                <div class="music-cover">
-
-                    <img
-                        src="https://raw.githubusercontent.com/aoxinreivox/aoxinreivox.github.io/main/file_00000000795082119825627ce981ebd5.png"
-                        alt="Thalakkanam Baile Edit"
-                    >
-
+    <div class="coverflow-container">
+        <div class="coverflow-track" id="coverflowTrack">
+            <!-- Cover Slide 1 -->
+            <div class="coverflow-item img-upload-box" data-index="0" data-title="THALAKKANAM<br>BAILE EDIT" data-link="https://on.soundcloud.com/poKeFsKSJLRUfMmdi9">
+                <img src="https://raw.githubusercontent.com/aoxinreivox/aoxinreivox.github.io/main/file_00000000795082119825627ce981ebd5.png" alt="Thalakkanam Baile Edit">
+                <div class="upload-hint">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <span>CHANGE COVER</span>
                 </div>
-
-            </a>
-
-
-            <div class="music-name">
-
-                THALAKKANAM<br>
-                BAILE EDIT
-
             </div>
 
+            <!-- Placeholder Slide 2 -->
+            <div class="coverflow-item img-upload-box empty" data-index="1" data-title="UNRELEASED<br>TRACK 02" data-link="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy">
+                <div class="upload-hint">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>UPLOAD COVER</span>
+                </div>
+            </div>
 
-            <a
-                href="https://on.soundcloud.com/poKeFsKSJLRUfMmdi9"
-                target="_blank"
-                class="music-button"
-            >
-                LISTEN
-            </a>
-
+            <!-- Placeholder Slide 3 -->
+            <div class="coverflow-item img-upload-box empty" data-index="2" data-title="NEW SINGLE<br>COMING SOON" data-link="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy">
+                <div class="upload-hint">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>UPLOAD COVER</span>
+                </div>
+            </div>
         </div>
-
-
-
-        <!-- RELEASING SOON 1 -->
-
-        <div class="music-card">
-
-            <div class="music-cover">
-
-                <img
-                    src="https://raw.githubusercontent.com/aoxinreivox/aoxinreivox.github.io/main/sooon.jpg"
-                    alt="Releasing Soon"
-                >
-
-            </div>
-
-
-            <div class="music-name">
-
-                RELEASING<br>
-                SOON
-
-            </div>
-
-        </div>
-
-
-
-        <!-- RELEASING SOON 2 -->
-
-        <div class="music-card">
-
-            <div class="music-cover">
-
-                <img
-                    src="https://raw.githubusercontent.com/aoxinreivox/aoxinreivox.github.io/main/sooon.jpg"
-                    alt="Releasing Soon"
-                >
-
-            </div>
-
-
-            <div class="music-name">
-
-                RELEASING<br>
-                SOON
-
-            </div>
-
-        </div>
-
-
     </div>
 
+    <div class="music-details">
+        <div class="music-name" id="currentTrackTitle">THALAKKANAM<br>BAILE EDIT</div>
+        <a id="currentTrackBtn" href="https://on.soundcloud.com/poKeFsKSJLRUfMmdi9" target="_blank" class="music-button">LISTEN</a>
+    </div>
 </section>
 
-
-
-<!-- =========================
-     VIDEOS
-========================= -->
-
+<!-- =======================================================
+     VIDEOS SECTION
+======================================================= -->
 <section id="videos" class="section">
-
     <div class="video-container">
+        <h2 class="video-heading">VIDEOS</h2>
 
-        <h2 class="video-heading">
-            VIDEOS
-        </h2>
-
-
-        <div class="video-box">
-
-            <a
-                href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g"
-                target="_blank"
-                class="youtube-button"
-            >
-                WATCH ON YOUTUBE
+        <div class="video-box img-upload-box empty" id="videoBox">
+            <div class="upload-hint" style="z-index:2;">
+                <i class="fa-solid fa-image"></i>
+                <span>UPLOAD VIDEO THUMBNAIL</span>
+            </div>
+            <a href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g" target="_blank" class="youtube-button">
+                <i class="fa-brands fa-youtube"></i> WATCH ON YOUTUBE
             </a>
-
         </div>
-
     </div>
-
 </section>
 
-
-
-<!-- =========================
-     LIVE MOMENTS
-========================= -->
-
+<!-- =======================================================
+     LIVE MOMENTS SECTION
+======================================================= -->
 <section id="live" class="section">
-
-    <h2 class="live-heading">
-        LIVE MOMENTS
-    </h2>
-
+    <h2 class="live-heading">LIVE MOMENTS</h2>
 
     <div class="live-slider">
-
-        <div
-            class="live-track"
-            id="liveTrack"
-        >
-
-            <div class="live-slide">
-
-                <img
-                    src=""
-                    alt="Aoxin Reivox live moment 1"
-                >
-
+        <div class="live-track" id="liveTrack">
+            <div class="live-slide img-upload-box empty">
+                <div class="upload-hint">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>UPLOAD LIVE PHOTO 1</span>
+                </div>
             </div>
-
-
-            <div class="live-slide">
-
-                <img
-                    src=""
-                    alt="Aoxin Reivox live moment 2"
-                >
-
+            <div class="live-slide img-upload-box empty">
+                <div class="upload-hint">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>UPLOAD LIVE PHOTO 2</span>
+                </div>
             </div>
-
-
-            <div class="live-slide">
-
-                <img
-                    src=""
-                    alt="Aoxin Reivox live moment 3"
-                >
-
+            <div class="live-slide img-upload-box empty">
+                <div class="upload-hint">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>UPLOAD LIVE PHOTO 3</span>
+                </div>
             </div>
-
         </div>
 
-
-        <button
-            class="slider-button slider-prev"
-            id="prevSlide"
-            aria-label="Previous photo"
-        >
-            ‹
-        </button>
-
-
-        <button
-            class="slider-button slider-next"
-            id="nextSlide"
-            aria-label="Next photo"
-        >
-            ›
-        </button>
-
+        <button class="slider-button slider-prev" id="prevSlide" aria-label="Previous photo">‹</button>
+        <button class="slider-button slider-next" id="nextSlide" aria-label="Next photo">›</button>
     </div>
-
 
     <div class="slider-dots">
-
-        <span
-            class="slider-dot active"
-            data-slide="0"
-        ></span>
-
-        <span
-            class="slider-dot"
-            data-slide="1"
-        ></span>
-
-        <span
-            class="slider-dot"
-            data-slide="2"
-        ></span>
-
+        <span class="slider-dot active" data-slide="0"></span>
+        <span class="slider-dot" data-slide="1"></span>
+        <span class="slider-dot" data-slide="2"></span>
     </div>
-
 </section>
 
-
-
-<!-- =========================
-     TOUR
-========================= -->
-
+<!-- =======================================================
+     TOUR SECTION
+======================================================= -->
 <section id="tour" class="section">
-
     <div class="tour-layout">
-
-        <img
-            class="tour-poster"
-            src=""
-            alt="Aoxin Reivox tour"
-        >
-
+        <div class="tour-poster img-upload-box empty">
+            <div class="upload-hint">
+                <i class="fa-solid fa-plus"></i>
+                <span>UPLOAD TOUR POSTER</span>
+            </div>
+        </div>
 
         <div class="tour-content">
-
-            <h2>
-                TOUR
-            </h2>
-
-
+            <h2>TOUR</h2>
             <div class="tour-status">
-
-                <strong>
-                    UPCOMING DATES
-                </strong>
-
+                <strong>UPCOMING DATES</strong>
                 There are no upcoming tour dates currently listed.
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-
-
-<!-- =========================
-     ABOUT
-========================= -->
-
+<!-- =======================================================
+     ABOUT SECTION
+======================================================= -->
 <section id="about" class="section">
-
     <div class="about-layout">
-
-
-        <div class="about-image">
-
-            <img
-                src=""
-                alt="Aoxin Reivox"
-            >
-
+        <div class="about-image img-upload-box empty">
+            <div class="upload-hint">
+                <i class="fa-solid fa-plus"></i>
+                <span>UPLOAD ARTIST PHOTO</span>
+            </div>
         </div>
 
-
         <div>
-
-            <h2 class="about-heading">
-                ABOUT
-            </h2>
-
-
+            <h2 class="about-heading">ABOUT</h2>
             <p class="about-text">
-
                 Aoxin Reivox is a producer and DJ from Kerala, India.
                 His musical journey began at 17 as a bedroom producer,
                 exploring electronic music and developing his own sound.
                 After years of focusing on production, 2026 marks the
                 beginning of his journey into DJing and live gigs.
-
             </p>
-
         </div>
-
     </div>
-
 </section>
 
-
-
-<!-- =========================
-     SOCIALS
-========================= -->
-
+<!-- =======================================================
+     SOCIALS SECTION
+======================================================= -->
 <section id="socials" class="section">
-
-    <h2 class="social-heading">
-        SOCIALS
-    </h2>
-
+    <h2 class="social-heading">SOCIALS</h2>
 
     <div class="social-grid">
-
-
-        <a
-            class="social-box"
-            href="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy"
-            target="_blank"
-        >
-            SOUNDCLOUD
+        <a class="social-box" href="https://on.soundcloud.com/a7wiRfpQDA8Gx8amLy" target="_blank">
+            <i class="fa-brands fa-soundcloud"></i>
+            <span>SOUNDCLOUD</span>
         </a>
-
-
-        <a
-            class="social-box"
-            href="https://open.spotify.com/"
-            target="_blank"
-        >
-            SPOTIFY
+        <a class="social-box" href="https://open.spotify.com/" target="_blank">
+            <i class="fa-brands fa-spotify"></i>
+            <span>SPOTIFY</span>
         </a>
-
-
-        <a
-            class="social-box"
-            href="https://aoxinreivox.bandcamp.com"
-            target="_blank"
-        >
-            BANDCAMP
+        <a class="social-box" href="https://aoxinreivox.bandcamp.com" target="_blank">
+            <i class="fa-brands fa-bandcamp"></i>
+            <span>BANDCAMP</span>
         </a>
-
-
-        <a
-            class="social-box"
-            href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g"
-            target="_blank"
-        >
-            YOUTUBE
+        <a class="social-box" href="https://www.youtube.com/channel/UCifwoNcUp7IxrT_FdD5F68g" target="_blank">
+            <i class="fa-brands fa-youtube"></i>
+            <span>YOUTUBE</span>
         </a>
-
-
     </div>
-
 </section>
 
-
-
-<!-- =========================
-     ENQUIRY
-========================= -->
-
+<!-- =======================================================
+     ENQUIRY SECTION
+======================================================= -->
 <section id="enquiry" class="section">
-
     <div class="enquiry-wrap">
-
-        <div class="section-title">
-            ENQUIRY
-        </div>
-
-
-        <div class="enquiry-title">
-
-            LET'S
-            <br>
-            CONNECT.
-
-        </div>
-
+        <div class="section-title">ENQUIRY</div>
+        <div class="enquiry-title">LET'S<br>CONNECT.</div>
 
         <div class="contact-buttons">
-
-            <a
-                class="contact-button"
-                href="mailto:"
-            >
-                EMAIL
-            </a>
-
-
-            <a
-                class="contact-button"
-                href="tel:"
-            >
-                CALL
-            </a>
-
+            <a class="contact-button" href="mailto:contact@aoxinreivox.com">EMAIL</a>
+            <a class="contact-button" href="tel:">CALL</a>
         </div>
-
     </div>
-
 </section>
 
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
+<!-- =======================================================
+     JAVASCRIPT LOGIC
+======================================================= -->
 <script>
+/* =========================
+   MENU OVERLAY TOGGLE
+========================= */
+const menuButton = document.getElementById("menuButton");
+const closeMenu = document.getElementById("closeMenu");
+const menuOverlay = document.getElementById("menu-overlay");
+const menuLinks = document.querySelectorAll(".menu-links a");
 
-const menuButton =
-    document.getElementById("menuButton");
-
-const closeMenu =
-    document.getElementById("closeMenu");
-
-const menuOverlay =
-    document.getElementById("menu-overlay");
-
-const menuLinks =
-    document.querySelectorAll(".menu-links a");
-
-
-menuButton.addEventListener("click", () => {
-
-    menuOverlay.classList.add("active");
-
-});
-
-
-closeMenu.addEventListener("click", () => {
-
-    menuOverlay.classList.remove("active");
-
-});
-
-
+menuButton.addEventListener("click", () => menuOverlay.classList.add("active"));
+closeMenu.addEventListener("click", () => menuOverlay.classList.remove("active"));
 menuLinks.forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        menuOverlay.classList.remove("active");
-
-    });
-
+    link.addEventListener("click", () => menuOverlay.classList.remove("active"));
 });
 
+/* =========================
+   UNIVERSAL IMAGE UPLOADER
+========================= */
+const globalFileInput = document.getElementById('globalFileInput');
+let targetElementForUpload = null;
 
+document.querySelectorAll('.img-upload-box').forEach(box => {
+    box.addEventListener('click', (e) => {
+        // Prevent click if button inside box was clicked
+        if (e.target.tagName === 'A' || e.target.closest('a')) return;
+        targetElementForUpload = box;
+        globalFileInput.click();
+    });
+});
+
+function triggerHeroBgUpload() {
+    targetElementForUpload = document.getElementById('heroBg');
+    globalFileInput.click();
+}
+
+globalFileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file || !targetElementForUpload) return;
+
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+        const imageUrl = evt.target.result;
+
+        if (targetElementForUpload.id === 'heroBg') {
+            targetElementForUpload.style.backgroundImage = `url('${imageUrl}')`;
+        } else {
+            let img = targetElementForUpload.querySelector('img');
+            if (!img) {
+                img = document.createElement('img');
+                targetElementForUpload.appendChild(img);
+            }
+            img.src = imageUrl;
+            targetElementForUpload.classList.remove('empty');
+        }
+    };
+    reader.readAsDataURL(file);
+    globalFileInput.value = '';
+});
+
+/* =========================
+   3D COVER FLOW CAROUSEL
+========================= */
+const coverItems = document.querySelectorAll('.coverflow-item');
+const trackTitle = document.getElementById('currentTrackTitle');
+const trackBtn = document.getElementById('currentTrackBtn');
+let activeMusicIndex = 0;
+
+function updateCoverflow() {
+    const total = coverItems.length;
+    coverItems.forEach((item, index) => {
+        item.className = 'coverflow-item img-upload-box';
+        if (!item.querySelector('img')) item.classList.add('empty');
+
+        let offset = index - activeMusicIndex;
+        if (offset < -2) offset += total;
+        if (offset > 2) offset -= total;
+
+        if (offset === 0) {
+            item.classList.add('active');
+            trackTitle.innerHTML = item.dataset.title || 'TRACK TITLE';
+            trackBtn.href = item.dataset.link || '#';
+        } else if (offset === -1) {
+            item.classList.add('left-1');
+        } else if (offset === 1) {
+            item.classList.add('right-1');
+        } else if (offset === -2) {
+            item.classList.add('left-2');
+        } else if (offset === 2) {
+            item.classList.add('right-2');
+        } else {
+            item.classList.add('hidden');
+        }
+    });
+}
+
+coverItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+        if (activeMusicIndex !== index) {
+            activeMusicIndex = index;
+            updateCoverflow();
+        }
+    });
+});
+updateCoverflow();
 
 /* =========================
    LIVE MOMENTS SLIDER
 ========================= */
-
-const liveTrack =
-    document.getElementById("liveTrack");
-
-const prevSlide =
-    document.getElementById("prevSlide");
-
-const nextSlide =
-    document.getElementById("nextSlide");
-
-const dots =
-    document.querySelectorAll(".slider-dot");
-
-
-let currentSlide = 0;
-
-const totalSlides = 3;
-
+const liveTrack = document.getElementById("liveTrack");
+const prevSlide = document.getElementById("prevSlide");
+const nextSlide = document.getElementById("nextSlide");
+const dots = document.querySelectorAll(".slider-dot");
+let currentLiveSlide = 0;
+const totalLiveSlides = 3;
 
 function showSlide(index) {
+    if (index < 0) currentLiveSlide = totalLiveSlides - 1;
+    else if (index >= totalLiveSlides) currentLiveSlide = 0;
+    else currentLiveSlide = index;
 
-    if (index < 0) {
-
-        currentSlide = totalSlides - 1;
-
-    }
-
-    else if (index >= totalSlides) {
-
-        currentSlide = 0;
-
-    }
-
-    else {
-
-        currentSlide = index;
-
-    }
-
-
-    liveTrack.style.transform =
-        `translateX(-${currentSlide * 100}%)`;
-
-
-    dots.forEach((dot, index) => {
-
-        dot.classList.toggle(
-            "active",
-            index === currentSlide
-        );
-
+    liveTrack.style.transform = `translateX(-${currentLiveSlide * 100}%)`;
+    dots.forEach((dot, idx) => {
+        dot.classList.toggle("active", idx === currentLiveSlide);
     });
-
 }
 
-
-prevSlide.addEventListener("click", () => {
-
-    showSlide(currentSlide - 1);
-
-});
-
-
-nextSlide.addEventListener("click", () => {
-
-    showSlide(currentSlide + 1);
-
-});
-
-
+prevSlide.addEventListener("click", () => showSlide(currentLiveSlide - 1));
+nextSlide.addEventListener("click", () => showSlide(currentLiveSlide + 1));
 dots.forEach(dot => {
-
-    dot.addEventListener("click", () => {
-
-        showSlide(
-            Number(dot.dataset.slide)
-        );
-
-    });
-
+    dot.addEventListener("click", () => showSlide(Number(dot.dataset.slide)));
 });
 
-
-setInterval(() => {
-
-    showSlide(currentSlide + 1);
-
-}, 5000);
-
+setInterval(() => showSlide(currentLiveSlide + 1), 6000);
 </script>
 
 </body>
